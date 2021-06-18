@@ -1,0 +1,606 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ED081596267C3BE90074CFDF /* Personal_Finance_PredictorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED081595267C3BE90074CFDF /* Personal_Finance_PredictorApp.swift */; };
+		ED081598267C3BE90074CFDF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED081597267C3BE90074CFDF /* ContentView.swift */; };
+		ED08159A267C3BEA0074CFDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED081599267C3BEA0074CFDF /* Assets.xcassets */; };
+		ED08159D267C3BEA0074CFDF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED08159C267C3BEA0074CFDF /* Preview Assets.xcassets */; };
+		ED08159F267C3BEA0074CFDF /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED08159E267C3BEA0074CFDF /* Persistence.swift */; };
+		ED0815A2267C3BEA0074CFDF /* Personal_Finance_Predictor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED0815A0267C3BEA0074CFDF /* Personal_Finance_Predictor.xcdatamodeld */; };
+		ED0815AD267C3BEB0074CFDF /* Personal_Finance_PredictorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0815AC267C3BEB0074CFDF /* Personal_Finance_PredictorTests.swift */; };
+		ED0815B8267C3BEB0074CFDF /* Personal_Finance_PredictorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0815B7267C3BEB0074CFDF /* Personal_Finance_PredictorUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ED0815A9267C3BEB0074CFDF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED08158A267C3BE90074CFDF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED081591267C3BE90074CFDF;
+			remoteInfo = "Personal Finance Predictor";
+		};
+		ED0815B4267C3BEB0074CFDF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED08158A267C3BE90074CFDF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED081591267C3BE90074CFDF;
+			remoteInfo = "Personal Finance Predictor";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		ED081592267C3BE90074CFDF /* Personal Finance Predictor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Personal Finance Predictor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED081595267C3BE90074CFDF /* Personal_Finance_PredictorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personal_Finance_PredictorApp.swift; sourceTree = "<group>"; };
+		ED081597267C3BE90074CFDF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		ED081599267C3BEA0074CFDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ED08159C267C3BEA0074CFDF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		ED08159E267C3BEA0074CFDF /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		ED0815A1267C3BEA0074CFDF /* Personal_Finance_Predictor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Personal_Finance_Predictor.xcdatamodel; sourceTree = "<group>"; };
+		ED0815A3267C3BEA0074CFDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED0815A8267C3BEB0074CFDF /* Personal Finance PredictorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Personal Finance PredictorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED0815AC267C3BEB0074CFDF /* Personal_Finance_PredictorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personal_Finance_PredictorTests.swift; sourceTree = "<group>"; };
+		ED0815AE267C3BEB0074CFDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED0815B3267C3BEB0074CFDF /* Personal Finance PredictorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Personal Finance PredictorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED0815B7267C3BEB0074CFDF /* Personal_Finance_PredictorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personal_Finance_PredictorUITests.swift; sourceTree = "<group>"; };
+		ED0815B9267C3BEB0074CFDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ED08158F267C3BE90074CFDF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED0815A5267C3BEB0074CFDF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED0815B0267C3BEB0074CFDF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ED081589267C3BE90074CFDF = {
+			isa = PBXGroup;
+			children = (
+				ED081594267C3BE90074CFDF /* Personal Finance Predictor */,
+				ED0815AB267C3BEB0074CFDF /* Personal Finance PredictorTests */,
+				ED0815B6267C3BEB0074CFDF /* Personal Finance PredictorUITests */,
+				ED081593267C3BE90074CFDF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ED081593267C3BE90074CFDF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ED081592267C3BE90074CFDF /* Personal Finance Predictor.app */,
+				ED0815A8267C3BEB0074CFDF /* Personal Finance PredictorTests.xctest */,
+				ED0815B3267C3BEB0074CFDF /* Personal Finance PredictorUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ED081594267C3BE90074CFDF /* Personal Finance Predictor */ = {
+			isa = PBXGroup;
+			children = (
+				ED081595267C3BE90074CFDF /* Personal_Finance_PredictorApp.swift */,
+				ED081597267C3BE90074CFDF /* ContentView.swift */,
+				ED081599267C3BEA0074CFDF /* Assets.xcassets */,
+				ED08159E267C3BEA0074CFDF /* Persistence.swift */,
+				ED0815A3267C3BEA0074CFDF /* Info.plist */,
+				ED0815A0267C3BEA0074CFDF /* Personal_Finance_Predictor.xcdatamodeld */,
+				ED08159B267C3BEA0074CFDF /* Preview Content */,
+			);
+			path = "Personal Finance Predictor";
+			sourceTree = "<group>";
+		};
+		ED08159B267C3BEA0074CFDF /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				ED08159C267C3BEA0074CFDF /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		ED0815AB267C3BEB0074CFDF /* Personal Finance PredictorTests */ = {
+			isa = PBXGroup;
+			children = (
+				ED0815AC267C3BEB0074CFDF /* Personal_Finance_PredictorTests.swift */,
+				ED0815AE267C3BEB0074CFDF /* Info.plist */,
+			);
+			path = "Personal Finance PredictorTests";
+			sourceTree = "<group>";
+		};
+		ED0815B6267C3BEB0074CFDF /* Personal Finance PredictorUITests */ = {
+			isa = PBXGroup;
+			children = (
+				ED0815B7267C3BEB0074CFDF /* Personal_Finance_PredictorUITests.swift */,
+				ED0815B9267C3BEB0074CFDF /* Info.plist */,
+			);
+			path = "Personal Finance PredictorUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ED081591267C3BE90074CFDF /* Personal Finance Predictor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED0815BC267C3BEB0074CFDF /* Build configuration list for PBXNativeTarget "Personal Finance Predictor" */;
+			buildPhases = (
+				ED08158E267C3BE90074CFDF /* Sources */,
+				ED08158F267C3BE90074CFDF /* Frameworks */,
+				ED081590267C3BE90074CFDF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Personal Finance Predictor";
+			productName = "Personal Finance Predictor";
+			productReference = ED081592267C3BE90074CFDF /* Personal Finance Predictor.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ED0815A7267C3BEB0074CFDF /* Personal Finance PredictorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED0815BF267C3BEB0074CFDF /* Build configuration list for PBXNativeTarget "Personal Finance PredictorTests" */;
+			buildPhases = (
+				ED0815A4267C3BEB0074CFDF /* Sources */,
+				ED0815A5267C3BEB0074CFDF /* Frameworks */,
+				ED0815A6267C3BEB0074CFDF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ED0815AA267C3BEB0074CFDF /* PBXTargetDependency */,
+			);
+			name = "Personal Finance PredictorTests";
+			productName = "Personal Finance PredictorTests";
+			productReference = ED0815A8267C3BEB0074CFDF /* Personal Finance PredictorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		ED0815B2267C3BEB0074CFDF /* Personal Finance PredictorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED0815C2267C3BEB0074CFDF /* Build configuration list for PBXNativeTarget "Personal Finance PredictorUITests" */;
+			buildPhases = (
+				ED0815AF267C3BEB0074CFDF /* Sources */,
+				ED0815B0267C3BEB0074CFDF /* Frameworks */,
+				ED0815B1267C3BEB0074CFDF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ED0815B5267C3BEB0074CFDF /* PBXTargetDependency */,
+			);
+			name = "Personal Finance PredictorUITests";
+			productName = "Personal Finance PredictorUITests";
+			productReference = ED0815B3267C3BEB0074CFDF /* Personal Finance PredictorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ED08158A267C3BE90074CFDF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					ED081591267C3BE90074CFDF = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					ED0815A7267C3BEB0074CFDF = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = ED081591267C3BE90074CFDF;
+					};
+					ED0815B2267C3BEB0074CFDF = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = ED081591267C3BE90074CFDF;
+					};
+				};
+			};
+			buildConfigurationList = ED08158D267C3BE90074CFDF /* Build configuration list for PBXProject "Personal Finance Predictor" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ED081589267C3BE90074CFDF;
+			productRefGroup = ED081593267C3BE90074CFDF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ED081591267C3BE90074CFDF /* Personal Finance Predictor */,
+				ED0815A7267C3BEB0074CFDF /* Personal Finance PredictorTests */,
+				ED0815B2267C3BEB0074CFDF /* Personal Finance PredictorUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ED081590267C3BE90074CFDF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED08159D267C3BEA0074CFDF /* Preview Assets.xcassets in Resources */,
+				ED08159A267C3BEA0074CFDF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED0815A6267C3BEB0074CFDF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED0815B1267C3BEB0074CFDF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ED08158E267C3BE90074CFDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED08159F267C3BEA0074CFDF /* Persistence.swift in Sources */,
+				ED0815A2267C3BEA0074CFDF /* Personal_Finance_Predictor.xcdatamodeld in Sources */,
+				ED081598267C3BE90074CFDF /* ContentView.swift in Sources */,
+				ED081596267C3BE90074CFDF /* Personal_Finance_PredictorApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED0815A4267C3BEB0074CFDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED0815AD267C3BEB0074CFDF /* Personal_Finance_PredictorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED0815AF267C3BEB0074CFDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED0815B8267C3BEB0074CFDF /* Personal_Finance_PredictorUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ED0815AA267C3BEB0074CFDF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED081591267C3BE90074CFDF /* Personal Finance Predictor */;
+			targetProxy = ED0815A9267C3BEB0074CFDF /* PBXContainerItemProxy */;
+		};
+		ED0815B5267C3BEB0074CFDF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED081591267C3BE90074CFDF /* Personal Finance Predictor */;
+			targetProxy = ED0815B4267C3BEB0074CFDF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		ED0815BA267C3BEB0074CFDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		ED0815BB267C3BEB0074CFDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ED0815BD267C3BEB0074CFDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Personal Finance Predictor/Preview Content\"";
+				DEVELOPMENT_TEAM = 85BBF3ZXBS;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Personal Finance Predictor/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rcrisanti.Personal-Finance-Predictor";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ED0815BE267C3BEB0074CFDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Personal Finance Predictor/Preview Content\"";
+				DEVELOPMENT_TEAM = 85BBF3ZXBS;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Personal Finance Predictor/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rcrisanti.Personal-Finance-Predictor";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		ED0815C0267C3BEB0074CFDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 85BBF3ZXBS;
+				INFOPLIST_FILE = "Personal Finance PredictorTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rcrisanti.Personal-Finance-PredictorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Personal Finance Predictor.app/Personal Finance Predictor";
+			};
+			name = Debug;
+		};
+		ED0815C1267C3BEB0074CFDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 85BBF3ZXBS;
+				INFOPLIST_FILE = "Personal Finance PredictorTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rcrisanti.Personal-Finance-PredictorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Personal Finance Predictor.app/Personal Finance Predictor";
+			};
+			name = Release;
+		};
+		ED0815C3267C3BEB0074CFDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 85BBF3ZXBS;
+				INFOPLIST_FILE = "Personal Finance PredictorUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rcrisanti.Personal-Finance-PredictorUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Personal Finance Predictor";
+			};
+			name = Debug;
+		};
+		ED0815C4267C3BEB0074CFDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 85BBF3ZXBS;
+				INFOPLIST_FILE = "Personal Finance PredictorUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rcrisanti.Personal-Finance-PredictorUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Personal Finance Predictor";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ED08158D267C3BE90074CFDF /* Build configuration list for PBXProject "Personal Finance Predictor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED0815BA267C3BEB0074CFDF /* Debug */,
+				ED0815BB267C3BEB0074CFDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED0815BC267C3BEB0074CFDF /* Build configuration list for PBXNativeTarget "Personal Finance Predictor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED0815BD267C3BEB0074CFDF /* Debug */,
+				ED0815BE267C3BEB0074CFDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED0815BF267C3BEB0074CFDF /* Build configuration list for PBXNativeTarget "Personal Finance PredictorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED0815C0267C3BEB0074CFDF /* Debug */,
+				ED0815C1267C3BEB0074CFDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED0815C2267C3BEB0074CFDF /* Build configuration list for PBXNativeTarget "Personal Finance PredictorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED0815C3267C3BEB0074CFDF /* Debug */,
+				ED0815C4267C3BEB0074CFDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		ED0815A0267C3BEA0074CFDF /* Personal_Finance_Predictor.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				ED0815A1267C3BEA0074CFDF /* Personal_Finance_Predictor.xcdatamodel */,
+			);
+			currentVersion = ED0815A1267C3BEA0074CFDF /* Personal_Finance_Predictor.xcdatamodel */;
+			path = Personal_Finance_Predictor.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = ED08158A267C3BE90074CFDF /* Project object */;
+}
