@@ -15,6 +15,15 @@
 		ED0815A2267C3BEA0074CFDF /* Personal_Finance_Predictor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED0815A0267C3BEA0074CFDF /* Personal_Finance_Predictor.xcdatamodeld */; };
 		ED0815AD267C3BEB0074CFDF /* Personal_Finance_PredictorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0815AC267C3BEB0074CFDF /* Personal_Finance_PredictorTests.swift */; };
 		ED0815B8267C3BEB0074CFDF /* Personal_Finance_PredictorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0815B7267C3BEB0074CFDF /* Personal_Finance_PredictorUITests.swift */; };
+		ED0815CE267C40780074CFDF /* PredictionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0815CD267C40780074CFDF /* PredictionViewModel.swift */; };
+		ED4CF50A267E4EA100BA0100 /* PredictionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CF509267E4EA100BA0100 /* PredictionsView.swift */; };
+		ED4CF50C267E4ED700BA0100 /* PredictionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CF50B267E4ED700BA0100 /* PredictionsViewModel.swift */; };
+		ED53AE66267D2CFB00517245 /* Delta.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53AE65267D2CFB00517245 /* Delta.swift */; };
+		ED53AE68267D2F6F00517245 /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53AE67267D2F6F00517245 /* Prediction.swift */; };
+		ED90DB31267FA2950044317D /* PredictionEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED90DB30267FA2950044317D /* PredictionEditView.swift */; };
+		ED90DB33267FA6120044317D /* DeltaRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED90DB32267FA6120044317D /* DeltaRowView.swift */; };
+		EDB0A1C7267EE39C00B45320 /* PredictionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB0A1C6267EE39C00B45320 /* PredictionStorage.swift */; };
+		EDB0A1CB267EF55300B45320 /* PredictionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB0A1CA267EF55300B45320 /* PredictionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +58,15 @@
 		ED0815B3267C3BEB0074CFDF /* Personal Finance PredictorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Personal Finance PredictorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED0815B7267C3BEB0074CFDF /* Personal_Finance_PredictorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personal_Finance_PredictorUITests.swift; sourceTree = "<group>"; };
 		ED0815B9267C3BEB0074CFDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED0815CD267C40780074CFDF /* PredictionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionViewModel.swift; sourceTree = "<group>"; };
+		ED4CF509267E4EA100BA0100 /* PredictionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsView.swift; sourceTree = "<group>"; };
+		ED4CF50B267E4ED700BA0100 /* PredictionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsViewModel.swift; sourceTree = "<group>"; };
+		ED53AE65267D2CFB00517245 /* Delta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delta.swift; sourceTree = "<group>"; };
+		ED53AE67267D2F6F00517245 /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
+		ED90DB30267FA2950044317D /* PredictionEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionEditView.swift; sourceTree = "<group>"; };
+		ED90DB32267FA6120044317D /* DeltaRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeltaRowView.swift; sourceTree = "<group>"; };
+		EDB0A1C6267EE39C00B45320 /* PredictionStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionStorage.swift; sourceTree = "<group>"; };
+		EDB0A1CA267EF55300B45320 /* PredictionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +119,12 @@
 			children = (
 				ED081595267C3BE90074CFDF /* Personal_Finance_PredictorApp.swift */,
 				ED081597267C3BE90074CFDF /* ContentView.swift */,
-				ED081599267C3BEA0074CFDF /* Assets.xcassets */,
-				ED08159E267C3BEA0074CFDF /* Persistence.swift */,
+				ED4CF508267E4E8F00BA0100 /* Views */,
+				ED0815CA267C3F900074CFDF /* ViewModels */,
+				ED53AE64267D2CE400517245 /* Models */,
+				ED0815CF267C42090074CFDF /* Data Model */,
 				ED0815A3267C3BEA0074CFDF /* Info.plist */,
-				ED0815A0267C3BEA0074CFDF /* Personal_Finance_Predictor.xcdatamodeld */,
+				ED081599267C3BEA0074CFDF /* Assets.xcassets */,
 				ED08159B267C3BEA0074CFDF /* Preview Content */,
 			);
 			path = "Personal Finance Predictor";
@@ -134,6 +154,45 @@
 				ED0815B9267C3BEB0074CFDF /* Info.plist */,
 			);
 			path = "Personal Finance PredictorUITests";
+			sourceTree = "<group>";
+		};
+		ED0815CA267C3F900074CFDF /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				ED4CF50B267E4ED700BA0100 /* PredictionsViewModel.swift */,
+				ED0815CD267C40780074CFDF /* PredictionViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		ED0815CF267C42090074CFDF /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				EDB0A1C6267EE39C00B45320 /* PredictionStorage.swift */,
+				ED08159E267C3BEA0074CFDF /* Persistence.swift */,
+				ED0815A0267C3BEA0074CFDF /* Personal_Finance_Predictor.xcdatamodeld */,
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		ED4CF508267E4E8F00BA0100 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ED4CF509267E4EA100BA0100 /* PredictionsView.swift */,
+				EDB0A1CA267EF55300B45320 /* PredictionView.swift */,
+				ED90DB30267FA2950044317D /* PredictionEditView.swift */,
+				ED90DB32267FA6120044317D /* DeltaRowView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		ED53AE64267D2CE400517245 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ED53AE67267D2F6F00517245 /* Prediction.swift */,
+				ED53AE65267D2CFB00517245 /* Delta.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,8 +324,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED53AE66267D2CFB00517245 /* Delta.swift in Sources */,
+				ED90DB31267FA2950044317D /* PredictionEditView.swift in Sources */,
+				ED90DB33267FA6120044317D /* DeltaRowView.swift in Sources */,
+				ED4CF50A267E4EA100BA0100 /* PredictionsView.swift in Sources */,
 				ED08159F267C3BEA0074CFDF /* Persistence.swift in Sources */,
+				EDB0A1CB267EF55300B45320 /* PredictionView.swift in Sources */,
+				EDB0A1C7267EE39C00B45320 /* PredictionStorage.swift in Sources */,
+				ED0815CE267C40780074CFDF /* PredictionViewModel.swift in Sources */,
 				ED0815A2267C3BEA0074CFDF /* Personal_Finance_Predictor.xcdatamodeld in Sources */,
+				ED4CF50C267E4ED700BA0100 /* PredictionsViewModel.swift in Sources */,
+				ED53AE68267D2F6F00517245 /* Prediction.swift in Sources */,
 				ED081598267C3BE90074CFDF /* ContentView.swift in Sources */,
 				ED081596267C3BE90074CFDF /* Personal_Finance_PredictorApp.swift in Sources */,
 			);
