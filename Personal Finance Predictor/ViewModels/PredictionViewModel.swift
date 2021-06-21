@@ -11,6 +11,9 @@ import os.log
 
 class PredictionViewModel: ObservableObject {
     @Published var prediction: Prediction
+    var isDisabled: Bool {
+        prediction.name.isEmpty
+    }
     
     init(_ prediction: Prediction? = nil) {
         if let prediction = prediction {
@@ -69,15 +72,6 @@ class PredictionViewModel: ObservableObject {
                     Self.logger.warning("Could not find Delta \(toRemove.name) in Prediction deltas")
                 }
             }
-        }
-    }
-    
-    // MARK: Validate input
-    func isValidBalance(_ balance: String) -> Bool {
-        if let _ = Double(balance) {
-            return true
-        } else {
-            return false
         }
     }
     

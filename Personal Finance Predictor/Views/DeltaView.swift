@@ -13,6 +13,7 @@ struct DeltaView: View {
     var body: some View {
         NavigationView {
             Text("Delta bottom sheet content")
+                .navigationBarTitle("New Delta")
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
                         Button("Cancel") {

@@ -10,7 +10,6 @@ import SwiftUI
 struct PredictionEditView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var isShowingNewDeltaSheet = false
-    @State private var newDeltaSheetIsOpen = false
     @ObservedObject var viewModel: PredictionViewModel
     
     init(viewModel: PredictionViewModel = PredictionViewModel()) {
@@ -25,7 +24,6 @@ struct PredictionEditView: View {
     
     var body: some View {
         Form {
-            
             Section {
                 TextField("Name", text: $viewModel.prediction.name)
                 
@@ -100,9 +98,10 @@ struct PredictionEditView: View {
                     viewModel.save()
                     presentationMode.wrappedValue.dismiss()
                 }
+                .disabled(viewModel.isDisabled)
             }
         }
-        .bottomSheet(isPresented: $isShowingNewDeltaSheet, isOpen: $newDeltaSheetIsOpen) {
+        .sheet(isPresented: $isShowingNewDeltaSheet) {
             DeltaView()
         }
     }
