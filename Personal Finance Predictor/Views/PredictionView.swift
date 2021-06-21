@@ -28,10 +28,12 @@ struct PredictionView: View {
                 }
             }) {
                 List {
-                    ForEach(viewModel.deltas) { delta in
+                    ForEach(viewModel.prediction.deltas) { delta in
                         DeltaRowView(delta: delta)
                     }
-                    .onDelete(perform: viewModel.deleteDeltas)
+                    .onDelete(perform: { indexSet in
+                        viewModel.deleteDeltas(atOffsets: indexSet, deleteFrom: .all)
+                    })
                 }
             }
         }

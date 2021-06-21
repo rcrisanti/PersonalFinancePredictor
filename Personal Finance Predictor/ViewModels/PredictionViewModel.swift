@@ -10,49 +10,19 @@ import Combine
 import os.log
 
 class PredictionViewModel: ObservableObject {
-    @Published var prediction: Prediction {
-        willSet {
-            deltas = newValue.deltas
+    @Published var prediction: Prediction
+    
+    init(_ prediction: Prediction? = nil) {
+        if let prediction = prediction {
+            self.prediction = prediction
+        } else {
+            self.prediction = Prediction()
         }
     }
-    @Published var deltas: [Delta]
-    @Published var predictionCD: PredictionCD
     
-    init(_ prediction: Prediction) {
-        self.prediction = prediction
-        self.deltas = prediction.deltas
-        
-        do {
-            self.predictionCD = try PredictionStorage.shared.getPrediction(withId: prediction.id)
-        } catch let error {
-            // MARK: THIS CAUSES ERRORS - HOW TO DEAL WITH NEW PREDICTION??
-            
-            Self.logger.error("\(error.localizedDescription)")
-            self.predictionCD = PredictionCD(context: PersistenceController.shared.viewContext)
-            predictionCD.id = prediction.id
-//            PersistenceController.shared.save()
-        }
-        
-    }
-    
+    // MARK: Save & Cancel
     func save() {
-        predictionCD.id = prediction.id
-        predictionCD.name = prediction.name
-        predictionCD.details = prediction.details
-        predictionCD.startBalance = prediction.startBalance
-        predictionCD.startDate = prediction.startDate
-//            predictionCD.addToDeltas(newValue.deltas.map {
-//                let deltaCD = DeltaCD(context: PersistenceController.shared.viewContext)
-//                deltaCD.id = $0.id
-//                deltaCD.name = $0.name
-//                deltaCD.details = $0.details
-//                deltaCD.positiveUncertainty = $0.positiveUncertainty
-//                deltaCD.negativeUncertainty = $0.negativeUncertainty
-//                deltaCD.dates = $0.dates
-//
-//                return deltaCD
-//            })
-        
+        _ = PredictionCD.fromPrediction(prediction)
         PersistenceController.shared.save()
     }
     
@@ -61,30 +31,53 @@ class PredictionViewModel: ObservableObject {
         PersistenceController.shared.save()
     }
     
+    // MARK: Add & Delete
     func addDelta() {
-        let delta = DeltaCD(context: PersistenceController.shared.viewContext)
-        delta.id = UUID()
-        delta.name = "Test Delta"
-        delta.value = 123.4
-        delta.positiveUncertainty = 20
-        delta.negativeUncertainty = 20
-        delta.details = "Here is a longer description"
-        delta.prediction = predictionCD
-        
-        PersistenceController.shared.save()
+        let delta = Delta(
+            id: UUID(),
+            name: "Test Delta",
+            value: 1234,
+            details: "A little bit extra about it",
+            dates: [],
+            positiveUncertainty: 20,
+            negativeUncertainty: 20
+        )
+        prediction.deltas.append(delta)
     }
     
-    func deleteDeltas(atOffsets: IndexSet) {
+    enum DeleteFrom {
+        case all, negative, nonnegative
+    }
+    
+    func deleteDeltas(atOffsets: IndexSet, deleteFrom: DeleteFrom = .all) {
         for index in atOffsets {
-            let delta = deltas[index]            
-            let deltasCD: [DeltaCD] = predictionCD.deltas?.allObjects as! [DeltaCD]
-            
-            if let toDelete = deltasCD.first(where: { $0.id == delta.id } ) {
-                PersistenceController.shared.viewContext.delete(toDelete)
-                PersistenceController.shared.save()
-            } else {
-                Self.logger.error("Cannot find delta with ID \(delta.id)")
+            switch deleteFrom {
+            case .all:
+                prediction.deltas.remove(at: index)
+            case.negative:
+                let toRemove = prediction.deltas.filter( { $0.value >= 0} )[index]
+                if let foundIndex = prediction.deltas.firstIndex(of: toRemove) {
+                    prediction.deltas.remove(at: foundIndex)
+                } else {
+                    Self.logger.warning("Could not find Delta \(toRemove.name) in Prediction deltas")
+                }
+            case.nonnegative:
+                let toRemove = prediction.deltas.filter( { $0.value > 0} )[index]
+                if let foundIndex = prediction.deltas.firstIndex(of: toRemove) {
+                    prediction.deltas.remove(at: foundIndex)
+                } else {
+                    Self.logger.warning("Could not find Delta \(toRemove.name) in Prediction deltas")
+                }
             }
+        }
+    }
+    
+    // MARK: Validate input
+    func isValidBalance(_ balance: String) -> Bool {
+        if let _ = Double(balance) {
+            return true
+        } else {
+            return false
         }
     }
     

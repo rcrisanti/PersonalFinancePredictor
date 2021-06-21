@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Delta: Identifiable {
+struct Delta: Identifiable, Hashable {
     let id: UUID
     var name: String
     var value: Double
-    var details: String?
+    var details: String
     var dates: [Date]
     var positiveUncertainty: Double
     var negativeUncertainty: Double
@@ -22,7 +22,7 @@ extension Delta {
         self.id = delta.id ?? UUID()
         self.name = delta.name ?? ""
         self.value = delta.value
-        self.details = delta.details
+        self.details = delta.details ?? ""
         
         let datesCD: [DateCD] = delta.dates?.allObjects as! [DateCD]
         self.dates = datesCD.map { $0.date ?? Date() }

@@ -12,6 +12,7 @@ struct Prediction: Identifiable {
     var name: String
     var startBalance: Double
     var startDate: Date
+//    var deltas: Set<Delta>
     var deltas: [Delta]
     var details: String
 }
@@ -35,6 +36,7 @@ extension Prediction {
         self.startDate = prediction.startDate ?? Date()
         
         let deltasCD: [DeltaCD] = prediction.deltas?.allObjects as! [DeltaCD]
+//        self.deltas = Set(deltasCD.map { Delta($0) })
         self.deltas = deltasCD.map { Delta($0) }
         
         self.details = prediction.details ?? ""

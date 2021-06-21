@@ -16,6 +16,12 @@
 		ED0815AD267C3BEB0074CFDF /* Personal_Finance_PredictorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0815AC267C3BEB0074CFDF /* Personal_Finance_PredictorTests.swift */; };
 		ED0815B8267C3BEB0074CFDF /* Personal_Finance_PredictorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0815B7267C3BEB0074CFDF /* Personal_Finance_PredictorUITests.swift */; };
 		ED0815CE267C40780074CFDF /* PredictionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0815CD267C40780074CFDF /* PredictionViewModel.swift */; };
+		ED2994EB2680370F0030377A /* DateCD+fromDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2994EA2680370F0030377A /* DateCD+fromDate.swift */; };
+		ED2994ED268037B30030377A /* DeltaCD+fromDelta.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2994EC268037B30030377A /* DeltaCD+fromDelta.swift */; };
+		ED2994EF2680389C0030377A /* PredictionCD+fromPrediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2994EE2680389C0030377A /* PredictionCD+fromPrediction.swift */; };
+		ED2994F12680442A0030377A /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2994F02680442A0030377A /* BottomSheetView.swift */; };
+		ED2994F42680463D0030377A /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2994F32680463D0030377A /* BottomSheet.swift */; };
+		ED2994F626804B120030377A /* DeltaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2994F526804B120030377A /* DeltaView.swift */; };
 		ED4CF50A267E4EA100BA0100 /* PredictionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CF509267E4EA100BA0100 /* PredictionsView.swift */; };
 		ED4CF50C267E4ED700BA0100 /* PredictionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CF50B267E4ED700BA0100 /* PredictionsViewModel.swift */; };
 		ED53AE66267D2CFB00517245 /* Delta.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53AE65267D2CFB00517245 /* Delta.swift */; };
@@ -59,6 +65,12 @@
 		ED0815B7267C3BEB0074CFDF /* Personal_Finance_PredictorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personal_Finance_PredictorUITests.swift; sourceTree = "<group>"; };
 		ED0815B9267C3BEB0074CFDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED0815CD267C40780074CFDF /* PredictionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionViewModel.swift; sourceTree = "<group>"; };
+		ED2994EA2680370F0030377A /* DateCD+fromDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateCD+fromDate.swift"; sourceTree = "<group>"; };
+		ED2994EC268037B30030377A /* DeltaCD+fromDelta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeltaCD+fromDelta.swift"; sourceTree = "<group>"; };
+		ED2994EE2680389C0030377A /* PredictionCD+fromPrediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PredictionCD+fromPrediction.swift"; sourceTree = "<group>"; };
+		ED2994F02680442A0030377A /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
+		ED2994F32680463D0030377A /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
+		ED2994F526804B120030377A /* DeltaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeltaView.swift; sourceTree = "<group>"; };
 		ED4CF509267E4EA100BA0100 /* PredictionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsView.swift; sourceTree = "<group>"; };
 		ED4CF50B267E4ED700BA0100 /* PredictionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsViewModel.swift; sourceTree = "<group>"; };
 		ED53AE65267D2CFB00517245 /* Delta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delta.swift; sourceTree = "<group>"; };
@@ -171,8 +183,20 @@
 				EDB0A1C6267EE39C00B45320 /* PredictionStorage.swift */,
 				ED08159E267C3BEA0074CFDF /* Persistence.swift */,
 				ED0815A0267C3BEA0074CFDF /* Personal_Finance_Predictor.xcdatamodeld */,
+				ED2994EA2680370F0030377A /* DateCD+fromDate.swift */,
+				ED2994EC268037B30030377A /* DeltaCD+fromDelta.swift */,
+				ED2994EE2680389C0030377A /* PredictionCD+fromPrediction.swift */,
 			);
 			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		ED2994F22680453B0030377A /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				ED2994F02680442A0030377A /* BottomSheetView.swift */,
+				ED2994F32680463D0030377A /* BottomSheet.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		ED4CF508267E4E8F00BA0100 /* Views */ = {
@@ -181,7 +205,9 @@
 				ED4CF509267E4EA100BA0100 /* PredictionsView.swift */,
 				EDB0A1CA267EF55300B45320 /* PredictionView.swift */,
 				ED90DB30267FA2950044317D /* PredictionEditView.swift */,
+				ED2994F526804B120030377A /* DeltaView.swift */,
 				ED90DB32267FA6120044317D /* DeltaRowView.swift */,
+				ED2994F22680453B0030377A /* Utility */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -325,18 +351,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED53AE66267D2CFB00517245 /* Delta.swift in Sources */,
+				ED2994F626804B120030377A /* DeltaView.swift in Sources */,
 				ED90DB31267FA2950044317D /* PredictionEditView.swift in Sources */,
 				ED90DB33267FA6120044317D /* DeltaRowView.swift in Sources */,
 				ED4CF50A267E4EA100BA0100 /* PredictionsView.swift in Sources */,
+				ED2994ED268037B30030377A /* DeltaCD+fromDelta.swift in Sources */,
 				ED08159F267C3BEA0074CFDF /* Persistence.swift in Sources */,
 				EDB0A1CB267EF55300B45320 /* PredictionView.swift in Sources */,
+				ED2994EB2680370F0030377A /* DateCD+fromDate.swift in Sources */,
 				EDB0A1C7267EE39C00B45320 /* PredictionStorage.swift in Sources */,
 				ED0815CE267C40780074CFDF /* PredictionViewModel.swift in Sources */,
+				ED2994F42680463D0030377A /* BottomSheet.swift in Sources */,
 				ED0815A2267C3BEA0074CFDF /* Personal_Finance_Predictor.xcdatamodeld in Sources */,
 				ED4CF50C267E4ED700BA0100 /* PredictionsViewModel.swift in Sources */,
+				ED2994EF2680389C0030377A /* PredictionCD+fromPrediction.swift in Sources */,
 				ED53AE68267D2F6F00517245 /* Prediction.swift in Sources */,
 				ED081598267C3BE90074CFDF /* ContentView.swift in Sources */,
 				ED081596267C3BE90074CFDF /* Personal_Finance_PredictorApp.swift in Sources */,
+				ED2994F12680442A0030377A /* BottomSheetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -30,7 +30,6 @@ struct PredictionsView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-//                        viewModel.addPrediction()
                         isShowingNewPredictionSheet = true
                     }) {
                         Image(systemName: "plus")

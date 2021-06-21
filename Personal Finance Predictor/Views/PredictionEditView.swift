@@ -9,29 +9,35 @@ import SwiftUI
 
 struct PredictionEditView: View {
     @Environment(\.presentationMode) var presentationMode
+    @State private var isShowingNewDeltaSheet = false
+    @State private var newDeltaSheetIsOpen = false
     @ObservedObject var viewModel: PredictionViewModel
-    @State private var startBalance: String = ""
     
-    init(viewModel: PredictionViewModel = PredictionViewModel(Prediction())) {
+    init(viewModel: PredictionViewModel = PredictionViewModel()) {
         self.viewModel = viewModel
     }
     
     let formatter: NumberFormatter = {
-            let formatter = NumberFormatter()
-            formatter.numberStyle = .decimal
-            return formatter
-        }()
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        return formatter
+    }()
     
     var body: some View {
         Form {
-            TextField("Name", text: $viewModel.prediction.name)
             
-            DatePicker("Start Date", selection: $viewModel.prediction.startDate, displayedComponents: .date)
-            
-            TextField("Start Balance", value: $startBalance, formatter: formatter, onEditingChanged: { _ in }, onCommit: {
-                viewModel.prediction.startBalance = Double(startBalance) ?? 0
-            })
-            .keyboardType(.decimalPad)
+            Section {
+                TextField("Name", text: $viewModel.prediction.name)
+                
+                DatePicker("Start Date", selection: $viewModel.prediction.startDate, displayedComponents: .date)
+                
+                TextField(
+                    "Start Balance",
+                    value: $viewModel.prediction.startBalance,
+                    formatter: formatter
+                )
+                .keyboardType(.decimalPad)
+            }
             
             Section(header: Text("Description")) {
                 TextEditor(text: $viewModel.prediction.details)
@@ -41,32 +47,42 @@ struct PredictionEditView: View {
                 Text("Earnings")
                 Spacer()
                 Button(action: {
-                    
+//                    viewModel.addDelta()
+                    isShowingNewDeltaSheet = true
                 }) {
                     Image(systemName: "plus")
                 }
             }) {
                 List {
-                    ForEach(viewModel.deltas.filter( { $0.value >= 0} )) { earning in
+                    ForEach(viewModel.prediction.deltas.filter( { $0.value >= 0} )) { earning in
                         DeltaRowView(delta: earning)
                     }
+                    .onDelete(perform: { indexSet in
+                        viewModel.deleteDeltas(atOffsets: indexSet, deleteFrom: .nonnegative)
+                    })
                 }
             }
             
-            Section(header: HStack {
-                Text("Fees")
-                Spacer()
-                Button(action: {
-                    
-                }) {
-                    Image(systemName: "plus")
-                }
-                
-            }) {
+            Section(
+                header: HStack {
+                    Text("Fees")
+                    Spacer()
+                    Button(action: {
+//                        viewModel.addDelta()
+                        isShowingNewDeltaSheet = true
+                    }) {
+                        Image(systemName: "plus")
+                    }
+                },
+                footer: Text("Don't worry... all of this can be changed later!")
+            ) {
                 List {
-                    ForEach(viewModel.deltas.filter( { $0.value < 0} )) { fee in
+                    ForEach(viewModel.prediction.deltas.filter( { $0.value < 0} )) { fee in
                         DeltaRowView(delta: fee)
                     }
+                    .onDelete(perform: { indexSet in
+                        viewModel.deleteDeltas(atOffsets: indexSet, deleteFrom: .negative)
+                    })
                 }
             }
         }
@@ -85,6 +101,9 @@ struct PredictionEditView: View {
                     presentationMode.wrappedValue.dismiss()
                 }
             }
+        }
+        .bottomSheet(isPresented: $isShowingNewDeltaSheet, isOpen: $newDeltaSheetIsOpen) {
+            DeltaView()
         }
     }
 }
