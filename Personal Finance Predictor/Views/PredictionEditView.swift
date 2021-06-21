@@ -29,12 +29,19 @@ struct PredictionEditView: View {
                 
                 DatePicker("Start Date", selection: $viewModel.prediction.startDate, displayedComponents: .date)
                 
-                TextField(
-                    "Start Balance",
-                    value: $viewModel.prediction.startBalance,
-                    formatter: formatter
-                )
-                .keyboardType(.decimalPad)
+                HStack {
+                    Text("Initial Balance")
+//                    Spacer()
+//                    TextField(
+//                        "Start Balance",
+//                        value: $viewModel.prediction.startBalance,
+//                        formatter: formatter
+//                    )
+//                    .keyboardType(.decimalPad)
+//                    .frame(width: 100, alignment: .trailing)
+                    
+                    CurrencyField(value: $viewModel.prediction.startBalance)
+                }
             }
             
             Section(header: Text("Description")) {
