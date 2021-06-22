@@ -30,6 +30,7 @@
 		ED90DB33267FA6120044317D /* DeltaRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED90DB32267FA6120044317D /* DeltaRowView.swift */; };
 		EDB0A1C7267EE39C00B45320 /* PredictionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB0A1C6267EE39C00B45320 /* PredictionStorage.swift */; };
 		EDB0A1CB267EF55300B45320 /* PredictionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB0A1CA267EF55300B45320 /* PredictionView.swift */; };
+		EDF74DC32681949A0070AE75 /* CurrencyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF74DC22681949A0070AE75 /* CurrencyField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		ED90DB32267FA6120044317D /* DeltaRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeltaRowView.swift; sourceTree = "<group>"; };
 		EDB0A1C6267EE39C00B45320 /* PredictionStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionStorage.swift; sourceTree = "<group>"; };
 		EDB0A1CA267EF55300B45320 /* PredictionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionView.swift; sourceTree = "<group>"; };
+		EDF74DC22681949A0070AE75 /* CurrencyField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +197,7 @@
 			children = (
 				ED2994F02680442A0030377A /* BottomSheetView.swift */,
 				ED2994F32680463D0030377A /* BottomSheet.swift */,
+				EDF74DC22681949A0070AE75 /* CurrencyField.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -237,6 +240,8 @@
 			dependencies = (
 			);
 			name = "Personal Finance Predictor";
+			packageProductDependencies = (
+			);
 			productName = "Personal Finance Predictor";
 			productReference = ED081592267C3BE90074CFDF /* Personal Finance Predictor.app */;
 			productType = "com.apple.product-type.application";
@@ -308,6 +313,8 @@
 				Base,
 			);
 			mainGroup = ED081589267C3BE90074CFDF;
+			packageReferences = (
+			);
 			productRefGroup = ED081593267C3BE90074CFDF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -363,6 +370,7 @@
 				ED0815CE267C40780074CFDF /* PredictionViewModel.swift in Sources */,
 				ED2994F42680463D0030377A /* BottomSheet.swift in Sources */,
 				ED0815A2267C3BEA0074CFDF /* Personal_Finance_Predictor.xcdatamodeld in Sources */,
+				EDF74DC32681949A0070AE75 /* CurrencyField.swift in Sources */,
 				ED4CF50C267E4ED700BA0100 /* PredictionsViewModel.swift in Sources */,
 				ED2994EF2680389C0030377A /* PredictionCD+fromPrediction.swift in Sources */,
 				ED53AE68267D2F6F00517245 /* Prediction.swift in Sources */,

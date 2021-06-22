@@ -7,6 +7,8 @@
 
 import SwiftUI
 import Combine
+import os.log
+import CoreData
 
 struct PredictionsView: View {
     @StateObject var viewModel: PredictionsViewModel
@@ -47,6 +49,19 @@ struct PredictionsView: View {
             }
         }
     }
+    
+    func deleteAll(_ entityName: String) {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: entityName)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try PersistenceController.shared.viewContext.execute(deleteRequest)
+        } catch {
+            Self.logger.error("Could not delete all \(entityName): \(error.localizedDescription)")
+        }
+    }
+    
+    static var logger = Logger(subsystem: "com.rcrisanti.Personal-Finance-Predictor", category: "PredictionsView")
 }
 
 struct PredictionsView_Previews: PreviewProvider {
