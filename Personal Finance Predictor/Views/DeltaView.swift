@@ -9,23 +9,26 @@ import SwiftUI
 
 struct DeltaView: View {
     @Environment(\.presentationMode) var presentationMode
+    @StateObject var viewModel = DeltaViewModel()
     
     var body: some View {
         NavigationView {
-            Text("Delta bottom sheet content")
-                .navigationBarTitle("New Delta")
-                .toolbar {
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button("Cancel") {
-                            presentationMode.wrappedValue.dismiss()
-                        }
+            Form {
+                TextField("Name", text: $viewModel.delta.name)
+            }
+            .navigationBarTitle("New Delta")
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
+                        presentationMode.wrappedValue.dismiss()
                     }
-                    
-                    ToolbarItem(placement: .confirmationAction) {
-                        Button("Save") {
-                            presentationMode.wrappedValue.dismiss()
-                        }
+                }
+                
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Save") {
+                        presentationMode.wrappedValue.dismiss()
                     }
+                }
             }
         }
     }

@@ -36,8 +36,6 @@ struct PredictionEditView: View {
                     Text("Initial Balance")
                     CurrencyField(value: startBalanceBinder, textAlignment: .right)
                 }
-                
-                Text("Value: \(viewModel.prediction.startBalance)")
             }
             
             Section(header: Text("Description")) {

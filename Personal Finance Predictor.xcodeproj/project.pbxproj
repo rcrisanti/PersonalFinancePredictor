@@ -28,6 +28,7 @@
 		ED53AE68267D2F6F00517245 /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53AE67267D2F6F00517245 /* Prediction.swift */; };
 		ED90DB31267FA2950044317D /* PredictionEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED90DB30267FA2950044317D /* PredictionEditView.swift */; };
 		ED90DB33267FA6120044317D /* DeltaRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED90DB32267FA6120044317D /* DeltaRowView.swift */; };
+		EDACE33626825E3400234076 /* DeltaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDACE33526825E3400234076 /* DeltaViewModel.swift */; };
 		EDB0A1C7267EE39C00B45320 /* PredictionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB0A1C6267EE39C00B45320 /* PredictionStorage.swift */; };
 		EDB0A1CB267EF55300B45320 /* PredictionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB0A1CA267EF55300B45320 /* PredictionView.swift */; };
 		EDF74DC32681949A0070AE75 /* CurrencyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF74DC22681949A0070AE75 /* CurrencyField.swift */; };
@@ -78,6 +79,7 @@
 		ED53AE67267D2F6F00517245 /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		ED90DB30267FA2950044317D /* PredictionEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionEditView.swift; sourceTree = "<group>"; };
 		ED90DB32267FA6120044317D /* DeltaRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeltaRowView.swift; sourceTree = "<group>"; };
+		EDACE33526825E3400234076 /* DeltaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeltaViewModel.swift; sourceTree = "<group>"; };
 		EDB0A1C6267EE39C00B45320 /* PredictionStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionStorage.swift; sourceTree = "<group>"; };
 		EDB0A1CA267EF55300B45320 /* PredictionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionView.swift; sourceTree = "<group>"; };
 		EDF74DC22681949A0070AE75 /* CurrencyField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyField.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			children = (
 				ED4CF50B267E4ED700BA0100 /* PredictionsViewModel.swift */,
 				ED0815CD267C40780074CFDF /* PredictionViewModel.swift */,
+				EDACE33526825E3400234076 /* DeltaViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				ED081598267C3BE90074CFDF /* ContentView.swift in Sources */,
 				ED081596267C3BE90074CFDF /* Personal_Finance_PredictorApp.swift in Sources */,
 				ED2994F12680442A0030377A /* BottomSheetView.swift in Sources */,
+				EDACE33626825E3400234076 /* DeltaViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

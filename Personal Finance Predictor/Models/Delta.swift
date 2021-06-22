@@ -18,16 +18,28 @@ struct Delta: Identifiable, Hashable {
 }
 
 extension Delta {
+    init() {
+        id = UUID()
+        name = ""
+        value = 0
+        details = ""
+        dates = []
+        positiveUncertainty = 0
+        negativeUncertainty = 0
+    }
+}
+
+extension Delta {
     init(_ delta: DeltaCD) {
-        self.id = delta.id ?? UUID()
-        self.name = delta.name ?? ""
-        self.value = delta.value
-        self.details = delta.details ?? ""
+        id = delta.id ?? UUID()
+        name = delta.name ?? ""
+        value = delta.value
+        details = delta.details ?? ""
         
         let datesCD: [DateCD] = delta.dates?.allObjects as! [DateCD]
-        self.dates = datesCD.map { $0.date ?? Date() }
+        dates = datesCD.map { $0.date ?? Date() }
         
-        self.positiveUncertainty = delta.positiveUncertainty
-        self.negativeUncertainty = delta.negativeUncertainty
+        positiveUncertainty = delta.positiveUncertainty
+        negativeUncertainty = delta.negativeUncertainty
     }
 }

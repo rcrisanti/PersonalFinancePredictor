@@ -12,33 +12,31 @@ struct Prediction: Identifiable {
     var name: String
     var startBalance: Double
     var startDate: Date
-//    var deltas: Set<Delta>
     var deltas: [Delta]
     var details: String
 }
 
 extension Prediction {
     init() {
-        self.id = UUID()
-        self.name = ""
-        self.startBalance = 0
-        self.startDate = Date()
-        self.deltas = []
-        self.details = ""
+        id = UUID()
+        name = ""
+        startBalance = 0
+        startDate = Date()
+        deltas = []
+        details = ""
     }
 }
 
 extension Prediction {
     init(_ prediction: PredictionCD) {
-        self.id = prediction.id ?? UUID()
-        self.name = prediction.name ?? ""
-        self.startBalance = prediction.startBalance
-        self.startDate = prediction.startDate ?? Date()
+        id = prediction.id ?? UUID()
+        name = prediction.name ?? ""
+        startBalance = prediction.startBalance
+        startDate = prediction.startDate ?? Date()
         
         let deltasCD: [DeltaCD] = prediction.deltas?.allObjects as! [DeltaCD]
-//        self.deltas = Set(deltasCD.map { Delta($0) })
-        self.deltas = deltasCD.map { Delta($0) }
+        deltas = deltasCD.map { Delta($0) }
         
-        self.details = prediction.details ?? ""
+        details = prediction.details ?? ""
     }
 }
