@@ -17,15 +17,6 @@ struct PredictionEditView: View {
     }
     
     var body: some View {
-        let startBalanceBinder = Binding<Double?>(
-            get: {
-                viewModel.prediction.startBalance
-            },
-            set: {
-                viewModel.prediction.startBalance = $0 ?? 0
-            }
-        )
-        
         Form {
             Section {
                 TextField("Name", text: $viewModel.prediction.name)
@@ -34,7 +25,7 @@ struct PredictionEditView: View {
                 
                 HStack {
                     Text("Initial Balance")
-                    CurrencyField("Initial Balance", value: startBalanceBinder, textAlignment: .right)
+                    CurrencyField("Initial Balance", value: $viewModel.prediction.startBalance, textAlignment: .right)
                 }
             }
             
