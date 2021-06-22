@@ -30,6 +30,7 @@ public struct CurrencyField: UIViewRepresentable {
     private var autocapitalization: UITextAutocapitalizationType
     private var keyboardType: UIKeyboardType
     private var returnKeyType: UIReturnKeyType
+    private var keyboardHasToolbar: Bool
     
     private var isSecure: Bool
     private var isUserInteractionEnabled: Bool
@@ -58,6 +59,7 @@ public struct CurrencyField: UIViewRepresentable {
         autocapitalization: UITextAutocapitalizationType = .sentences,
         keyboardType: UIKeyboardType = .decimalPad,
         returnKeyType: UIReturnKeyType = .default,
+        keyboardHasToolbar: Bool = true,
         isSecure: Bool = false,
         isUserInteractionEnabled: Bool = true,
         clearsOnBeginEditing: Bool = false,
@@ -81,6 +83,7 @@ public struct CurrencyField: UIViewRepresentable {
         self.autocapitalization = autocapitalization
         self.keyboardType = keyboardType
         self.returnKeyType = returnKeyType
+        self.keyboardHasToolbar = keyboardHasToolbar
         self.isSecure = isSecure
         self.isUserInteractionEnabled = isUserInteractionEnabled
         self.clearsOnBeginEditing = clearsOnBeginEditing
@@ -170,6 +173,10 @@ public struct CurrencyField: UIViewRepresentable {
         textField.autocapitalizationType = autocapitalization
         textField.keyboardType = keyboardType
         textField.returnKeyType = returnKeyType
+        
+        if keyboardHasToolbar{
+            textField.inputAccessoryView = context.coordinator.makeFloatingToolbar()
+        }
         
         textField.clearsOnBeginEditing = clearsOnBeginEditing
         textField.isSecureTextEntry = isSecure
@@ -353,9 +360,45 @@ public struct CurrencyField: UIViewRepresentable {
             self.onReturn()
             return true
         }
+        
+        public func makeFloatingToolbar() -> UIToolbar {
+            let bar = UIToolbar()
+                        
+            let plusSignButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(plusSignButtonPressed(sender:)))
+            let minusSignButton = UIBarButtonItem(image: UIImage(systemName: "minus"), style: .plain, target: self, action: #selector(minusSignButtonPressed(sender:)))
+            let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+            let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed(sender:)))
+            
+            bar.items = [plusSignButton, minusSignButton, spacer, doneButton]
+            bar.sizeToFit()
+            return bar
+        }
+        
+        @objc private func minusSignButtonPressed(sender: UIToolbar) {
+            if let value = value {
+                if value > 0 {
+                    self.value = value * -1
+                    self.internalValue = value
+                }
+            }
+        }
+        
+        @objc private func plusSignButtonPressed(sender: UIToolbar) {
+            if let value = value {
+                if value < 0 {
+                    self.value = value * -1
+                    self.internalValue = value
+                }
+            }
+        }
+        
+        @objc private func doneButtonPressed(sender: UIToolbar) {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
     }
 }
 
+// MARK: - Extensions
 fileprivate extension String {
     
     var numberOfDecimalPoints: Int {
