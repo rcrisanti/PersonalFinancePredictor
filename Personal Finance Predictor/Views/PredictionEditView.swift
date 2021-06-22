@@ -16,13 +16,16 @@ struct PredictionEditView: View {
         self.viewModel = viewModel
     }
     
-    let formatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        return formatter
-    }()
-    
     var body: some View {
+        let startBalanceBinder = Binding<Double?>(
+            get: {
+                viewModel.prediction.startBalance
+            },
+            set: {
+                viewModel.prediction.startBalance = $0 ?? 0
+            }
+        )
+        
         Form {
             Section {
                 TextField("Name", text: $viewModel.prediction.name)
@@ -31,17 +34,10 @@ struct PredictionEditView: View {
                 
                 HStack {
                     Text("Initial Balance")
-//                    Spacer()
-//                    TextField(
-//                        "Start Balance",
-//                        value: $viewModel.prediction.startBalance,
-//                        formatter: formatter
-//                    )
-//                    .keyboardType(.decimalPad)
-//                    .frame(width: 100, alignment: .trailing)
-                    
-                    CurrencyField(value: $viewModel.prediction.startBalance)
+                    CurrencyField(value: startBalanceBinder, textAlignment: .right)
                 }
+                
+                Text("Value: \(viewModel.prediction.startBalance)")
             }
             
             Section(header: Text("Description")) {
@@ -118,7 +114,7 @@ struct PredictionEditView_Previews: PreviewProvider {
     static let prediction = Prediction(
         id: UUID(),
         name: "",
-        startBalance: 0,
+        startBalance: -999_999.99,
         startDate: Date(),
         deltas: [],
         details: ""

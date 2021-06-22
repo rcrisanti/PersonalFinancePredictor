@@ -22,11 +22,6 @@
 		ED2994F12680442A0030377A /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2994F02680442A0030377A /* BottomSheetView.swift */; };
 		ED2994F42680463D0030377A /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2994F32680463D0030377A /* BottomSheet.swift */; };
 		ED2994F626804B120030377A /* DeltaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2994F526804B120030377A /* DeltaView.swift */; };
-		ED3E1E5E26810D1600478DAA /* TextBindingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3E1E5D26810D1600478DAA /* TextBindingManager.swift */; };
-		ED3E1E6126810E3C00478DAA /* Formatter+currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3E1E6026810E3C00478DAA /* Formatter+currency.swift */; };
-		ED3E1E6326810EC200478DAA /* Decimal+currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3E1E6226810EC200478DAA /* Decimal+currency.swift */; };
-		ED3E1E6526810ED500478DAA /* String+decimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3E1E6426810ED500478DAA /* String+decimal.swift */; };
-		ED3E1E6726810FA200478DAA /* CurrencyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3E1E6626810FA200478DAA /* CurrencyField.swift */; };
 		ED4CF50A267E4EA100BA0100 /* PredictionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CF509267E4EA100BA0100 /* PredictionsView.swift */; };
 		ED4CF50C267E4ED700BA0100 /* PredictionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CF50B267E4ED700BA0100 /* PredictionsViewModel.swift */; };
 		ED53AE66267D2CFB00517245 /* Delta.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53AE65267D2CFB00517245 /* Delta.swift */; };
@@ -35,6 +30,7 @@
 		ED90DB33267FA6120044317D /* DeltaRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED90DB32267FA6120044317D /* DeltaRowView.swift */; };
 		EDB0A1C7267EE39C00B45320 /* PredictionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB0A1C6267EE39C00B45320 /* PredictionStorage.swift */; };
 		EDB0A1CB267EF55300B45320 /* PredictionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB0A1CA267EF55300B45320 /* PredictionView.swift */; };
+		EDF74DC32681949A0070AE75 /* CurrencyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF74DC22681949A0070AE75 /* CurrencyField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,11 +72,6 @@
 		ED2994F02680442A0030377A /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		ED2994F32680463D0030377A /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
 		ED2994F526804B120030377A /* DeltaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeltaView.swift; sourceTree = "<group>"; };
-		ED3E1E5D26810D1600478DAA /* TextBindingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBindingManager.swift; sourceTree = "<group>"; };
-		ED3E1E6026810E3C00478DAA /* Formatter+currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Formatter+currency.swift"; sourceTree = "<group>"; };
-		ED3E1E6226810EC200478DAA /* Decimal+currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+currency.swift"; sourceTree = "<group>"; };
-		ED3E1E6426810ED500478DAA /* String+decimal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+decimal.swift"; sourceTree = "<group>"; };
-		ED3E1E6626810FA200478DAA /* CurrencyField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyField.swift; sourceTree = "<group>"; };
 		ED4CF509267E4EA100BA0100 /* PredictionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsView.swift; sourceTree = "<group>"; };
 		ED4CF50B267E4ED700BA0100 /* PredictionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsViewModel.swift; sourceTree = "<group>"; };
 		ED53AE65267D2CFB00517245 /* Delta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delta.swift; sourceTree = "<group>"; };
@@ -89,6 +80,7 @@
 		ED90DB32267FA6120044317D /* DeltaRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeltaRowView.swift; sourceTree = "<group>"; };
 		EDB0A1C6267EE39C00B45320 /* PredictionStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionStorage.swift; sourceTree = "<group>"; };
 		EDB0A1CA267EF55300B45320 /* PredictionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionView.swift; sourceTree = "<group>"; };
+		EDF74DC22681949A0070AE75 /* CurrencyField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,20 +197,9 @@
 			children = (
 				ED2994F02680442A0030377A /* BottomSheetView.swift */,
 				ED2994F32680463D0030377A /* BottomSheet.swift */,
+				EDF74DC22681949A0070AE75 /* CurrencyField.swift */,
 			);
 			path = Utility;
-			sourceTree = "<group>";
-		};
-		ED3E1E5F26810E1600478DAA /* CurrencyField */ = {
-			isa = PBXGroup;
-			children = (
-				ED3E1E6626810FA200478DAA /* CurrencyField.swift */,
-				ED3E1E5D26810D1600478DAA /* TextBindingManager.swift */,
-				ED3E1E6026810E3C00478DAA /* Formatter+currency.swift */,
-				ED3E1E6426810ED500478DAA /* String+decimal.swift */,
-				ED3E1E6226810EC200478DAA /* Decimal+currency.swift */,
-			);
-			path = CurrencyField;
 			sourceTree = "<group>";
 		};
 		ED4CF508267E4E8F00BA0100 /* Views */ = {
@@ -230,7 +211,6 @@
 				ED2994F526804B120030377A /* DeltaView.swift */,
 				ED90DB32267FA6120044317D /* DeltaRowView.swift */,
 				ED2994F22680453B0030377A /* Utility */,
-				ED3E1E5F26810E1600478DAA /* CurrencyField */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -260,6 +240,8 @@
 			dependencies = (
 			);
 			name = "Personal Finance Predictor";
+			packageProductDependencies = (
+			);
 			productName = "Personal Finance Predictor";
 			productReference = ED081592267C3BE90074CFDF /* Personal Finance Predictor.app */;
 			productType = "com.apple.product-type.application";
@@ -331,6 +313,8 @@
 				Base,
 			);
 			mainGroup = ED081589267C3BE90074CFDF;
+			packageReferences = (
+			);
 			productRefGroup = ED081593267C3BE90074CFDF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -375,11 +359,8 @@
 			files = (
 				ED53AE66267D2CFB00517245 /* Delta.swift in Sources */,
 				ED2994F626804B120030377A /* DeltaView.swift in Sources */,
-				ED3E1E5E26810D1600478DAA /* TextBindingManager.swift in Sources */,
 				ED90DB31267FA2950044317D /* PredictionEditView.swift in Sources */,
 				ED90DB33267FA6120044317D /* DeltaRowView.swift in Sources */,
-				ED3E1E6126810E3C00478DAA /* Formatter+currency.swift in Sources */,
-				ED3E1E6326810EC200478DAA /* Decimal+currency.swift in Sources */,
 				ED4CF50A267E4EA100BA0100 /* PredictionsView.swift in Sources */,
 				ED2994ED268037B30030377A /* DeltaCD+fromDelta.swift in Sources */,
 				ED08159F267C3BEA0074CFDF /* Persistence.swift in Sources */,
@@ -389,14 +370,13 @@
 				ED0815CE267C40780074CFDF /* PredictionViewModel.swift in Sources */,
 				ED2994F42680463D0030377A /* BottomSheet.swift in Sources */,
 				ED0815A2267C3BEA0074CFDF /* Personal_Finance_Predictor.xcdatamodeld in Sources */,
+				EDF74DC32681949A0070AE75 /* CurrencyField.swift in Sources */,
 				ED4CF50C267E4ED700BA0100 /* PredictionsViewModel.swift in Sources */,
 				ED2994EF2680389C0030377A /* PredictionCD+fromPrediction.swift in Sources */,
 				ED53AE68267D2F6F00517245 /* Prediction.swift in Sources */,
 				ED081598267C3BE90074CFDF /* ContentView.swift in Sources */,
 				ED081596267C3BE90074CFDF /* Personal_Finance_PredictorApp.swift in Sources */,
-				ED3E1E6726810FA200478DAA /* CurrencyField.swift in Sources */,
 				ED2994F12680442A0030377A /* BottomSheetView.swift in Sources */,
-				ED3E1E6526810ED500478DAA /* String+decimal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
