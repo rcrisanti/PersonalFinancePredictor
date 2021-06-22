@@ -34,7 +34,7 @@ struct PredictionEditView: View {
                 
                 HStack {
                     Text("Initial Balance")
-                    CurrencyField(value: startBalanceBinder, textAlignment: .right)
+                    CurrencyField("Initial Balance", value: startBalanceBinder, textAlignment: .right)
                 }
             }
             

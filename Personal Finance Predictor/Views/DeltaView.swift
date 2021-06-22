@@ -15,6 +15,8 @@ struct DeltaView: View {
         NavigationView {
             Form {
                 TextField("Name", text: $viewModel.delta.name)
+                
+//                CurrencyField("Value", value: $viewModel.delta.value)
             }
             .navigationBarTitle("New Delta")
             .toolbar {
