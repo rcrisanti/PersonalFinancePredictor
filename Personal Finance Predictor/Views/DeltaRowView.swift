@@ -29,6 +29,6 @@ struct DeltaRowView: View {
 
 struct DeltaRowView_Previews: PreviewProvider {
     static var previews: some View {
-        DeltaRowView(delta: Delta(id: UUID(), name: "Paycheck", value: -850, details: "", dates: [], positiveUncertainty: 0, negativeUncertainty: 0))
+        DeltaRowView(delta: Delta(id: UUID(), name: "Paycheck", value: -850, details: "", dates: [], positiveUncertainty: 0, negativeUncertainty: 0, dateRepetition: .custom))
     }
 }

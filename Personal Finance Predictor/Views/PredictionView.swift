@@ -59,7 +59,7 @@ struct PredictionView_Previews: PreviewProvider {
         startBalance: 1234.2,
         startDate: Date(),
         deltas: [
-            Delta(id: UUID(), name: "Paycheck", value: 854.12, details: "Make that MONEYYYY", dates: [Date(), Date(timeInterval: 100000, since: Date())], positiveUncertainty: 10, negativeUncertainty: 10)
+            Delta(id: UUID(), name: "Paycheck", value: 854.12, details: "Make that MONEYYYY", dates: [Date(), Date(timeInterval: 100000, since: Date())], positiveUncertainty: 10, negativeUncertainty: 10, dateRepetition: .custom)
         ],
         details: "Some more, detailed, information"
     )

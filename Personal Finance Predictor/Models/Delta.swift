@@ -15,6 +15,7 @@ struct Delta: Identifiable, Hashable {
     var dates: [Date]
     var positiveUncertainty: Double
     var negativeUncertainty: Double
+    var dateRepetition: DateRepetition
 }
 
 extension Delta {
@@ -26,6 +27,7 @@ extension Delta {
         dates = []
         positiveUncertainty = 0
         negativeUncertainty = 0
+        dateRepetition = .custom
     }
 }
 
@@ -41,5 +43,7 @@ extension Delta {
         
         positiveUncertainty = delta.positiveUncertainty
         negativeUncertainty = delta.negativeUncertainty
+        
+        dateRepetition = DateRepetition(rawValue: delta.dateRepetition ?? "Custom") ?? .custom
     }
 }

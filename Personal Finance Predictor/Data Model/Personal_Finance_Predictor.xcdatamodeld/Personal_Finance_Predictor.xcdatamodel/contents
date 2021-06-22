@@ -6,6 +6,7 @@
         <relationship name="delta" maxCount="1" deletionRule="Nullify" destinationEntity="DeltaCD" inverseName="dates" inverseEntity="DeltaCD"/>
     </entity>
     <entity name="DeltaCD" representedClassName="DeltaCD" syncable="YES" codeGenerationType="class">
+        <attribute name="dateRepetition" optional="YES" attributeType="String"/>
         <attribute name="details" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -25,7 +26,7 @@
     </entity>
     <elements>
         <element name="DateCD" positionX="-54" positionY="18" width="128" height="74"/>
-        <element name="DeltaCD" positionX="-63" positionY="-18" width="128" height="149"/>
+        <element name="DeltaCD" positionX="-63" positionY="-18" width="128" height="164"/>
         <element name="PredictionCD" positionX="-36" positionY="45" width="128" height="119"/>
     </elements>
 </model>

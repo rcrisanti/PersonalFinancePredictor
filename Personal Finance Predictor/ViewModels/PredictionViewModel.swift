@@ -43,7 +43,8 @@ class PredictionViewModel: ObservableObject {
             details: "A little bit extra about it",
             dates: [],
             positiveUncertainty: 20,
-            negativeUncertainty: 20
+            negativeUncertainty: 20,
+            dateRepetition: .custom
         )
         prediction.deltas.append(delta)
     }

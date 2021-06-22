@@ -21,4 +21,13 @@ class DeltaViewModel: ObservableObject {
             self.delta = Delta()
         }
     }
+    
+    func setUncertainty(pos: Double, neg: Double) {
+        delta.positiveUncertainty = pos
+        delta.negativeUncertainty = neg
+    }
+    
+    func setUncertainty(_ to: Double) {
+        setUncertainty(pos: to, neg: to)
+    }
 }
