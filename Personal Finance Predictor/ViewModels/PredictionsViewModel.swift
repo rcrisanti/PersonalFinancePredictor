@@ -15,7 +15,7 @@ class PredictionsViewModel: ObservableObject {
     @Published var predictionsCD: [PredictionCD] = [] {
         willSet {
             predictions = newValue.map { Prediction($0) }
-            predictionVMs = predictions.map { PredictionViewModel($0) }
+            predictionVMs = predictions.map { PredictionViewModel(prediction: $0) }
         }
     }
     @Published var predictions: [Prediction] = []
@@ -28,11 +28,7 @@ class PredictionsViewModel: ObservableObject {
             self.predictionsCD = predictions
         }
     }
-    
-    func addPrediction() {
-        PredictionStorage.shared.add()
-    }
-    
+
     func deletePredictions(atOffsets: IndexSet) {
         for index in atOffsets {
             let toDelete = predictionsCD[index]

@@ -30,6 +30,10 @@ class DeltaViewModel: ObservableObject {
         }
     }
     
+    init(newFor prediction: Prediction) {
+        delta = Delta(for: prediction)
+    }
+    
     func setUncertainty(pos: Double, neg: Double) {
         delta.positiveUncertainty = pos
         delta.negativeUncertainty = neg
@@ -48,9 +52,20 @@ class DeltaViewModel: ObservableObject {
         }
     }
     
-    // MARK: Save
+    // MARK: Save & cancel
     func save() {
-//        _ = DeltaCD(delta: delta, for: <#T##PredictionCD#>)
+//        if let deltaCD = PredictionStorage.shared.getDelta(withId: delta.id) {
+//            deltaCD.update(from: delta)
+//        } else {
+//            _ = DeltaCD(delta: delta)
+//        }
+        _ = DeltaCD.from(delta)
+        PersistenceController.shared.save()
+    }
+    
+    func cancel() {
+        PersistenceController.shared.viewContext.rollback()
+        PersistenceController.shared.save()
     }
     
 //    func dateRange(from start: Date, to end: Date, every interval: DateRepetition) -> [Date] {

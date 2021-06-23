@@ -11,21 +11,30 @@ import os.log
 
 class PredictionViewModel: ObservableObject {
     @Published var prediction: Prediction
+    
+    let withFullToolbar: Bool
+    
+    init(prediction: Prediction? = nil) {
+        if let prediction = prediction {
+            self.prediction = prediction
+            withFullToolbar = false
+        } else {
+            self.prediction = Prediction()
+            withFullToolbar = true
+        }
+    }
+    
     var isDisabled: Bool {
         prediction.name.isEmpty
     }
     
-    init(_ prediction: Prediction? = nil) {
-        if let prediction = prediction {
-            self.prediction = prediction
-        } else {
-            self.prediction = Prediction()
-        }
-    }
-    
     // MARK: Save
     func save() {
-        _ = PredictionCD(prediction: prediction)
+        if let predictionCD = PredictionStorage.shared.getPrediction(withId: prediction.id) {
+            predictionCD.update(from: prediction)
+        } else {
+            _ = PredictionCD(prediction: prediction)
+        }
         PersistenceController.shared.save()
     }
     

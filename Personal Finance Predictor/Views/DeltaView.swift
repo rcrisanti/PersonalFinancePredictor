@@ -9,10 +9,18 @@ import SwiftUI
 
 struct DeltaView: View {
     @Environment(\.presentationMode) var presentationMode
-    @StateObject var viewModel = DeltaViewModel()
-    @State private var uncertaintySamePositiveNegative = true
+    @StateObject var viewModel: DeltaViewModel
+    @State private var uncertaintyIsSymmetric = true
     @State private var singleUncertaintyValue: Double = 0
     @State private var activeAlert: AboutAlerts?
+    
+    init(viewModel: DeltaViewModel? = nil) {
+        if let viewModel = viewModel {
+            _viewModel = StateObject(wrappedValue: viewModel)
+        } else {
+            _viewModel = StateObject(wrappedValue: DeltaViewModel())
+        }
+    }
     
     var body: some View {
         NavigationView {
@@ -78,7 +86,7 @@ extension DeltaView {
 // MARK: - Uncertainty section
 extension DeltaView {
     @ViewBuilder var uncertaintySection: some View {
-        Toggle(isOn: $uncertaintySamePositiveNegative) {
+        Toggle(isOn: $uncertaintyIsSymmetric) {
             HStack {
                 Text("Symmetric")
                 Button(action: {
@@ -90,7 +98,7 @@ extension DeltaView {
         }
         
         HStack {
-            if uncertaintySamePositiveNegative {
+            if uncertaintyIsSymmetric {
                 Text("Value")
                 CurrencyField("Value", value: $singleUncertaintyValue, textAlignment: .right, onReturn: {
                     viewModel.setUncertainty(singleUncertaintyValue)
@@ -103,7 +111,7 @@ extension DeltaView {
             }
         }
         
-        if !uncertaintySamePositiveNegative {
+        if !uncertaintyIsSymmetric {
             HStack {
                 Text("Negative Value")
                 CurrencyField("Negative Value", value: $viewModel.delta.negativeUncertainty, textAlignment: .right)
@@ -146,12 +154,14 @@ extension DeltaView {
     @ToolbarContentBuilder var toolbar: some ToolbarContent {
         ToolbarItem(placement: .cancellationAction) {
             Button("Cancel") {
+                viewModel.cancel()
                 presentationMode.wrappedValue.dismiss()
             }
         }
         
         ToolbarItem(placement: .confirmationAction) {
             Button("Save") {
+                viewModel.save()
                 presentationMode.wrappedValue.dismiss()
             }
         }

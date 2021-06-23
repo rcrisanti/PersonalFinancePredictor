@@ -22,8 +22,8 @@ struct PredictionsView: View {
         NavigationView {
             List {
                 ForEach(viewModel.predictions) { prediction in
-                    NavigationLink(destination: PredictionView(viewModel: PredictionViewModel(prediction))) {
-                        Text("Prediction \(prediction.name)")
+                    NavigationLink(destination: PredictionView(viewModel: PredictionViewModel(prediction: prediction))) {
+                        PredictionRowView(prediction: prediction)
                     }
                 }
                 .onDelete(perform: viewModel.deletePredictions)
@@ -66,6 +66,9 @@ struct PredictionsView: View {
 
 struct PredictionsView_Previews: PreviewProvider {
     static var previews: some View {
-        PredictionsView()
+        Group {
+            PredictionsView()
+            PredictionsView()
+        }
     }
 }

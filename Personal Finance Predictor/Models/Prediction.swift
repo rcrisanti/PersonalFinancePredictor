@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Prediction: Identifiable {
+struct Prediction: Identifiable, Hashable {
     let id: UUID
     var name: String
     var startBalance: Double

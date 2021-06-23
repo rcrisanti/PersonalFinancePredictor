@@ -62,7 +62,7 @@ struct PredictionView: View {
                         Image(systemName: "plus")
                     }
                 },
-                footer: Text("Don't worry... all of this can be changed later!")
+                footer: Text("Don't worry... all of this can be updated at any time!")
             ) {
                 List {
                     ForEach(viewModel.prediction.deltas.filter( { $0.value < 0} )) { fee in
@@ -75,27 +75,43 @@ struct PredictionView: View {
             }
         }
         .navigationTitle("Prediction")
-        .toolbar {
-            ToolbarItem(placement: .cancellationAction) {
-                Button("Cancel") {
-                    presentationMode.wrappedValue.dismiss()
-                }
-            }
-            
-            ToolbarItem(placement: .confirmationAction) {
-                Button("Save") {
-                    viewModel.save()
-                    presentationMode.wrappedValue.dismiss()
-                }
-                .disabled(viewModel.isDisabled)
-            }
-        }
+        .toolbar { toolbar }
         .sheet(isPresented: $isShowingNewDeltaSheet) {
-            DeltaView()
+            DeltaView(viewModel: DeltaViewModel(newFor: viewModel.prediction))
         }
     }
 }
 
+// MARK: - Intro section
+extension PredictionView {
+    
+}
+
+// MARK: - Toolbar
+extension PredictionView {
+    @ToolbarContentBuilder var toolbar: some ToolbarContent {
+        ToolbarItem(placement: .cancellationAction) {
+            if viewModel.withFullToolbar {
+                Button("Cancel") {
+                    presentationMode.wrappedValue.dismiss()
+                }
+            } else {
+                EmptyView()
+            }
+        }
+        
+        ToolbarItem(placement: .confirmationAction) {
+            Button("Save") {
+                viewModel.save()
+                presentationMode.wrappedValue.dismiss()
+            }
+            .disabled(viewModel.isDisabled)
+        }
+    }
+}
+
+
+// MARK: - Preview
 struct PredictionView_Previews: PreviewProvider {
     static let prediction = Prediction(
         id: UUID(),
@@ -108,7 +124,7 @@ struct PredictionView_Previews: PreviewProvider {
     
     static var previews: some View {
         NavigationView {
-            PredictionView(viewModel: PredictionViewModel(prediction))
+            PredictionView(viewModel: PredictionViewModel(prediction: prediction))
         }
     }
 }
