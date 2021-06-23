@@ -3,9 +3,10 @@
     <entity name="DateCD" representedClassName="DateCD" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <relationship name="delta" maxCount="1" deletionRule="Nullify" destinationEntity="DeltaCD" inverseName="dates" inverseEntity="DeltaCD"/>
+        <relationship name="delta" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DeltaCD" inverseName="dates" inverseEntity="DeltaCD"/>
     </entity>
     <entity name="DeltaCD" representedClassName="DeltaCD" syncable="YES" codeGenerationType="class">
+        <attribute name="dateRepetition" optional="YES" attributeType="String"/>
         <attribute name="details" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -13,7 +14,7 @@
         <attribute name="positiveUncertainty" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="value" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="dates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DateCD" inverseName="delta" inverseEntity="DateCD"/>
-        <relationship name="prediction" maxCount="1" deletionRule="Nullify" destinationEntity="PredictionCD" inverseName="deltas" inverseEntity="PredictionCD"/>
+        <relationship name="prediction" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PredictionCD" inverseName="deltas" inverseEntity="PredictionCD"/>
     </entity>
     <entity name="PredictionCD" representedClassName="PredictionCD" syncable="YES" codeGenerationType="class">
         <attribute name="details" optional="YES" attributeType="String"/>
@@ -25,7 +26,7 @@
     </entity>
     <elements>
         <element name="DateCD" positionX="-54" positionY="18" width="128" height="74"/>
-        <element name="DeltaCD" positionX="-63" positionY="-18" width="128" height="149"/>
+        <element name="DeltaCD" positionX="-63" positionY="-18" width="128" height="164"/>
         <element name="PredictionCD" positionX="-36" positionY="45" width="128" height="119"/>
     </elements>
 </model>

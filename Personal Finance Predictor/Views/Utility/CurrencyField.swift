@@ -11,7 +11,7 @@ import UIKit
 public struct CurrencyField: UIViewRepresentable {
     // Taken & slightly adapted from https://github.com/youjinp/SwiftUIKit
     
-    @Binding var value: Double?
+    @Binding var value: Double
     private var isResponder: Binding<Bool>?
     private var tag: Int
     private var alwaysShowFractions: Bool
@@ -44,7 +44,7 @@ public struct CurrencyField: UIViewRepresentable {
     
     public init(
         _ placeholder: String = "",
-        value: Binding<Double?>,
+        value: Binding<Double>,
         isResponder: Binding<Bool>? = nil,
         tag: Int = 0,
         alwaysShowFractions: Bool = true,
@@ -100,9 +100,7 @@ public struct CurrencyField: UIViewRepresentable {
         textField.addTarget(context.coordinator, action: #selector(context.coordinator.textFieldEditingDidEnd(_:)), for: .editingDidEnd)
         
         // initial value
-        if let v = self.value {
-            textField.text = v.currencyFormat(decimalPlaces: self.numberOfDecimalPlaces, forceShowDecimalPlaces: self.alwaysShowFractions, currencySymbol: self.currencySymbol)
-        }
+        textField.text = value.currencyFormat(decimalPlaces: numberOfDecimalPlaces, forceShowDecimalPlaces: alwaysShowFractions, currencySymbol: currencySymbol)
         
         // tag
         textField.tag = self.tag
@@ -198,11 +196,7 @@ public struct CurrencyField: UIViewRepresentable {
         
         // value
         if self.value != context.coordinator.internalValue {
-            if self.value == nil {
-                textField.text = nil
-            } else {
-                textField.text = self.value!.currencyFormat(decimalPlaces: self.numberOfDecimalPlaces, forceShowDecimalPlaces: self.alwaysShowFractions, currencySymbol: self.currencySymbol)
-            }
+            textField.text = value.currencyFormat(decimalPlaces: numberOfDecimalPlaces, forceShowDecimalPlaces: alwaysShowFractions, currencySymbol: currencySymbol)
         }
         
         // set first responder ONCE
@@ -222,18 +216,18 @@ public struct CurrencyField: UIViewRepresentable {
     }
     
     public class Coordinator: NSObject, UITextFieldDelegate {
-        @Binding var value: Double?
+        @Binding var value: Double
         private var isResponder: Binding<Bool>?
         private var onReturn: ()->()
         private var alwaysShowFractions: Bool
         private var numberOfDecimalPlaces: Int
         private var currencySymbol: String?
         
-        var internalValue: Double?
+        var internalValue: Double
         var onEditingChanged: (Bool)->()
         var didBecomeFirstResponder = false
         
-        init(value: Binding<Double?>,
+        init(value: Binding<Double>,
              isResponder: Binding<Bool>?,
              alwaysShowFractions: Bool,
              numberOfDecimalPlaces: Int,
@@ -241,7 +235,6 @@ public struct CurrencyField: UIViewRepresentable {
              onReturn: @escaping () -> Void = {},
              onEditingChanged: @escaping (Bool) -> Void = { _ in }
         ) {
-            print("coordinator init")
             _value = value
             internalValue = value.wrappedValue
             self.isResponder = isResponder
@@ -338,7 +331,7 @@ public struct CurrencyField: UIViewRepresentable {
         }
         
         public func textFieldDidEndEditing(_ textField: UITextField) {
-            textField.text = self.value?.currencyFormat(decimalPlaces: self.numberOfDecimalPlaces, forceShowDecimalPlaces: self.alwaysShowFractions, currencySymbol: self.currencySymbol)
+            textField.text = value.currencyFormat(decimalPlaces: numberOfDecimalPlaces, forceShowDecimalPlaces: alwaysShowFractions, currencySymbol: currencySymbol)
             DispatchQueue.main.async {
                 self.isResponder?.wrappedValue = false
             }
@@ -375,20 +368,16 @@ public struct CurrencyField: UIViewRepresentable {
         }
         
         @objc private func minusSignButtonPressed(sender: UIToolbar) {
-            if let value = value {
-                if value > 0 {
-                    self.value = value * -1
-                    self.internalValue = value
-                }
+            if value > 0 {
+                internalValue = value
+                value *= -1
             }
         }
         
         @objc private func plusSignButtonPressed(sender: UIToolbar) {
-            if let value = value {
-                if value < 0 {
-                    self.value = value * -1
-                    self.internalValue = value
-                }
+            if value < 0 {
+                internalValue = value
+                value *= -1
             }
         }
         

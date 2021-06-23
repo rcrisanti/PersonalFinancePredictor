@@ -38,36 +38,38 @@ class PredictionStorage: NSObject, ObservableObject {
         }
     }
     
-    func add() {
-//        Self.logger.notice("Add functionality not yet implemented")
-        
-        let prediction = PredictionCD(context: PersistenceController.shared.viewContext)
-        prediction.id = UUID()
-        prediction.name = "Test prediction"
-        prediction.startBalance = 12345.67
-        prediction.startDate = Date()
-        prediction.details = "Here is all I know about this prediction"
-        
-        PersistenceController.shared.save()
-    }
-    
     func delete(_ prediction: PredictionCD) {
-//        Self.logger.notice("Delete functionality not yet implemented")
-        
         PersistenceController.shared.viewContext.delete(prediction)
         PersistenceController.shared.save()
     }
     
-    func update() {
-        Self.logger.notice("Update functionality not yet implemented")
+    func getPrediction(withId: UUID) -> PredictionCD? {
+        guard let prediction = predictions.value.first(where: { $0.id == withId } ) else {
+            Self.logger.warning("Could not find a PredictionCD with id \(withId.uuidString)")
+            return nil
+        }
+        return prediction
     }
     
-    func getPrediction(withId: UUID) throws -> PredictionCD {
-        if let prediction = predictions.value.first(where: { $0.id == withId } ) {
-            return prediction
-        } else {
-            throw PredictionStorageError.NoMatchingObject("No PredictionCD with ID \(withId.uuidString)")
+    func getDelta(withId: UUID) -> DeltaCD? {
+        let deltas: [DeltaCD] = Array(predictions.value.map { $0.deltas?.allObjects as! [DeltaCD] }.joined())
+        
+        guard let delta = deltas.first(where: { $0.id == withId } ) else {
+            Self.logger.warning("Could not find a DeltaCD with id \(withId.uuidString)")
+            return nil
         }
+        return delta
+    }
+    
+    func getDate(withId: UUID) -> DateCD? {
+        let deltas: [DeltaCD] = Array(predictions.value.map { $0.deltas?.allObjects as! [DeltaCD] }.joined())
+        let dates: [DateCD] = Array(deltas.map { $0.dates?.allObjects as! [DateCD] }.joined())
+        
+        guard let date = dates.first(where: { $0.id == withId } ) else {
+            Self.logger.warning("Could not find a DateCD with id \(withId.uuidString)")
+            return nil
+        }
+        return date
     }
     
     static let logger = Logger(subsystem: "com.rcrisanti.Personal-Finance-Predictor", category: "PredictionStorage")

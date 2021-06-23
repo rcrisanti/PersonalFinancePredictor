@@ -9,13 +9,14 @@ import Foundation
 import Combine
 import os.log
 
+enum DeltaFilter {
+    case earnings, fees, all
+}
+
 class PredictionViewModel: ObservableObject {
     @Published var prediction: Prediction
-    var isDisabled: Bool {
-        prediction.name.isEmpty
-    }
-    
-    init(_ prediction: Prediction? = nil) {
+        
+    init(prediction: Prediction? = nil) {
         if let prediction = prediction {
             self.prediction = prediction
         } else {
@@ -23,49 +24,43 @@ class PredictionViewModel: ObservableObject {
         }
     }
     
-    // MARK: Save & Cancel
+    var isDisabled: Bool {
+        prediction.name.isEmpty
+    }
+    
+    var earnings: [Delta] {
+        prediction.deltas.filter { $0.value >= 0 }
+    }
+    
+    var fees: [Delta] {
+        prediction.deltas.filter { $0.value < 0 }
+    }
+    
+    // MARK: Save
     func save() {
-        _ = PredictionCD.fromPrediction(prediction)
+        if let predictionCD = PredictionStorage.shared.getPrediction(withId: prediction.id) {
+            predictionCD.update(from: prediction)
+        } else {
+            _ = PredictionCD(prediction: prediction)
+        }
         PersistenceController.shared.save()
     }
     
-    func cancel() {
-        PersistenceController.shared.viewContext.rollback()
-        PersistenceController.shared.save()
-    }
-    
-    // MARK: Add & Delete
-    func addDelta() {
-        let delta = Delta(
-            id: UUID(),
-            name: "Test Delta",
-            value: 1234,
-            details: "A little bit extra about it",
-            dates: [],
-            positiveUncertainty: 20,
-            negativeUncertainty: 20
-        )
-        prediction.deltas.append(delta)
-    }
-    
-    enum DeleteFrom {
-        case all, negative, nonnegative
-    }
-    
-    func deleteDeltas(atOffsets: IndexSet, deleteFrom: DeleteFrom = .all) {
+    // MARK: Delete
+    func deleteDeltas(atOffsets: IndexSet, deleteFrom: DeltaFilter = .all) {
         for index in atOffsets {
             switch deleteFrom {
             case .all:
                 prediction.deltas.remove(at: index)
-            case.negative:
-                let toRemove = prediction.deltas.filter( { $0.value >= 0} )[index]
+            case .fees:
+                let toRemove = fees[index]
                 if let foundIndex = prediction.deltas.firstIndex(of: toRemove) {
                     prediction.deltas.remove(at: foundIndex)
                 } else {
                     Self.logger.warning("Could not find Delta \(toRemove.name) in Prediction deltas")
                 }
-            case.nonnegative:
-                let toRemove = prediction.deltas.filter( { $0.value > 0} )[index]
+            case .earnings:
+                let toRemove = earnings[index]
                 if let foundIndex = prediction.deltas.firstIndex(of: toRemove) {
                     prediction.deltas.remove(at: foundIndex)
                 } else {
