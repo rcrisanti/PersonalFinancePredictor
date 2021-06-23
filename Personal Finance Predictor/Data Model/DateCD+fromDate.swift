@@ -8,15 +8,14 @@
 import Foundation
 
 extension DateCD {
-    static func fromDate(_ date: Date, for deltaCD: DeltaCD, withId: UUID? = nil) -> DateCD {
-        let dateCD = DateCD(context: PersistenceController.shared.viewContext)
+    convenience init(date: Date, for deltaCD: DeltaCD, withId: UUID? = nil) {
+        self.init(context: PersistenceController.shared.viewContext)
         if let id = withId {
-            dateCD.id = id
+            self.id = id
         } else {
-            dateCD.id = UUID()
+            self.id = UUID()
         }
-        dateCD.date = date
-        dateCD.delta = deltaCD
-        return dateCD
+        self.date = date
+        delta = deltaCD
     }
 }

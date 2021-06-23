@@ -8,60 +8,102 @@
 import SwiftUI
 
 struct PredictionView: View {
+    @Environment(\.presentationMode) var presentationMode
+    @State private var isShowingNewDeltaSheet = false
     @ObservedObject var viewModel: PredictionViewModel
+    
+    init(viewModel: PredictionViewModel = PredictionViewModel()) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         Form {
-            Section(header: Text("About")) {
-                Text("\(formatDate(viewModel.prediction.startDate)): \(viewModel.prediction.startBalance, specifier: "$%.2f")")
+            Section {
+                TextField("Name", text: $viewModel.prediction.name)
                 
-                Text(viewModel.prediction.details)
+                DatePicker("Start Date", selection: $viewModel.prediction.startDate, displayedComponents: .date)
+                
+                HStack {
+                    Text("Initial Balance")
+                    CurrencyField("Initial Balance", value: $viewModel.prediction.startBalance, textAlignment: .right)
+                }
+            }
+            
+            Section(header: Text("Description")) {
+                TextEditor(text: $viewModel.prediction.details)
             }
             
             Section(header: HStack {
-                Text("Deltas")
+                Text("Earnings")
                 Spacer()
                 Button(action: {
-                    viewModel.addDelta()
+                    isShowingNewDeltaSheet = true
                 }) {
                     Image(systemName: "plus")
                 }
             }) {
                 List {
-                    ForEach(viewModel.prediction.deltas) { delta in
-                        DeltaRowView(delta: delta)
+                    ForEach(viewModel.prediction.deltas.filter( { $0.value >= 0} )) { earning in
+                        DeltaRowView(delta: earning)
                     }
                     .onDelete(perform: { indexSet in
-                        viewModel.deleteDeltas(atOffsets: indexSet, deleteFrom: .all)
+                        viewModel.deleteDeltas(atOffsets: indexSet, deleteFrom: .nonnegative)
+                    })
+                }
+            }
+            
+            Section(
+                header: HStack {
+                    Text("Fees")
+                    Spacer()
+                    Button(action: {
+                        isShowingNewDeltaSheet = true
+                    }) {
+                        Image(systemName: "plus")
+                    }
+                },
+                footer: Text("Don't worry... all of this can be changed later!")
+            ) {
+                List {
+                    ForEach(viewModel.prediction.deltas.filter( { $0.value < 0} )) { fee in
+                        DeltaRowView(delta: fee)
+                    }
+                    .onDelete(perform: { indexSet in
+                        viewModel.deleteDeltas(atOffsets: indexSet, deleteFrom: .negative)
                     })
                 }
             }
         }
-        .navigationBarTitle(viewModel.prediction.name)
+        .navigationTitle("Prediction")
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Cancel") {
+                    presentationMode.wrappedValue.dismiss()
+                }
+            }
+            
+            ToolbarItem(placement: .confirmationAction) {
+                Button("Save") {
+                    viewModel.save()
+                    presentationMode.wrappedValue.dismiss()
+                }
+                .disabled(viewModel.isDisabled)
+            }
+        }
+        .sheet(isPresented: $isShowingNewDeltaSheet) {
+            DeltaView()
+        }
     }
-}
-
-func formatDate(_ date: Date, timeStyle: DateFormatter.Style = .none, dateStyle: DateFormatter.Style = .short, dateFormat: String? = nil) -> String {
-    let formatter = DateFormatter()
-    if let dateFormat = dateFormat {
-        formatter.dateFormat = dateFormat
-    } else {
-        formatter.timeStyle = timeStyle
-        formatter.dateStyle = dateStyle
-    }
-    return formatter.string(from: date)
 }
 
 struct PredictionView_Previews: PreviewProvider {
     static let prediction = Prediction(
         id: UUID(),
-        name: "Test Prediction",
-        startBalance: 1234.2,
+        name: "",
+        startBalance: -999_999.99,
         startDate: Date(),
-        deltas: [
-            Delta(id: UUID(), name: "Paycheck", value: 854.12, details: "Make that MONEYYYY", dates: [Date(), Date(timeInterval: 100000, since: Date())], positiveUncertainty: 10, negativeUncertainty: 10, dateRepetition: .custom)
-        ],
-        details: "Some more, detailed, information"
+        deltas: [],
+        details: ""
     )
     
     static var previews: some View {

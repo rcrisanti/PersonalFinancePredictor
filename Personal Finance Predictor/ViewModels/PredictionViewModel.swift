@@ -23,32 +23,13 @@ class PredictionViewModel: ObservableObject {
         }
     }
     
-    // MARK: Save & Cancel
+    // MARK: Save
     func save() {
-        _ = PredictionCD.fromPrediction(prediction)
+        _ = PredictionCD(prediction: prediction)
         PersistenceController.shared.save()
     }
     
-    func cancel() {
-        PersistenceController.shared.viewContext.rollback()
-        PersistenceController.shared.save()
-    }
-    
-    // MARK: Add & Delete
-    func addDelta() {
-        let delta = Delta(
-            id: UUID(),
-            name: "Test Delta",
-            value: 1234,
-            details: "A little bit extra about it",
-            dates: [],
-            positiveUncertainty: 20,
-            negativeUncertainty: 20,
-            dateRepetition: .custom
-        )
-        prediction.deltas.append(delta)
-    }
-    
+    // MARK: Delete
     enum DeleteFrom {
         case all, negative, nonnegative
     }

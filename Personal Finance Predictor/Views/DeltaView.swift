@@ -12,18 +12,13 @@ struct DeltaView: View {
     @StateObject var viewModel = DeltaViewModel()
     @State private var uncertaintySamePositiveNegative = true
     @State private var singleUncertaintyValue: Double = 0
-    @State private var showingSymmetricUncertaintyAboutAlert = false
+    @State private var activeAlert: AboutAlerts?
     
     var body: some View {
         NavigationView {
             Form {
                 Section {
-                    TextField("Name", text: $viewModel.delta.name)
-                    
-                    HStack {
-                        Text("Value")
-                        CurrencyField("Value", value: $viewModel.delta.value, textAlignment: .right)
-                    }
+                    introSection
                 }
                 
                 Section(header: Text("Description")) {
@@ -31,75 +26,170 @@ struct DeltaView: View {
                 }
                 
                 Section(header: Text("Uncertainty")) {
-                    Toggle(isOn: $uncertaintySamePositiveNegative) {
-                        HStack {
-                            Text("Symmetric")
-                            Button(action: {
-                                showingSymmetricUncertaintyAboutAlert.toggle()
-                            }) {
-                                Image(systemName: "questionmark.circle")
-                            }
-                        }
-                    }
-                    
-                    HStack {
-                        if uncertaintySamePositiveNegative {
-                            Text("Value")
-                            CurrencyField("Value", value: $singleUncertaintyValue, textAlignment: .right, onReturn: {
-                                viewModel.setUncertainty(singleUncertaintyValue)
-                            }, onEditingChanged: { _ in
-                                viewModel.setUncertainty(singleUncertaintyValue)
-                            })
-                        } else {
-                            Text("Positive Value")
-                            CurrencyField("Positive Value", value: $viewModel.delta.positiveUncertainty, textAlignment: .right)
-                        }
-                    }
-                    
-                    if !uncertaintySamePositiveNegative {
-                        HStack {
-                            Text("Negative Value")
-                            CurrencyField("Negative Value", value: $viewModel.delta.negativeUncertainty, textAlignment: .right)
-                        }
-                    }
+                    uncertaintySection
                 }
                 
                 Section(header: Text("Dates")) {
-                    Picker("Repetition", selection: $viewModel.delta.dateRepetition) {
-                        ForEach(DateRepetition.allCases) {
-                            Text($0.rawValue).tag($0)
-                        }
+                    datesSection
+                }
+                
+                Section(header: HStack {
+                    Spacer()
+                    Button(action: {
+                        viewModel.delta.dates.append(Date())
+                    }) {
+                        Label("Add Date", systemImage: "plus")
                     }
-//                    .pickerStyle(MenuPickerStyle())
-                    
-                    
+                }) {
+                    customDatesSection
                 }
             }
             .navigationBarTitle("New Delta")
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
-                        presentationMode.wrappedValue.dismiss()
-                    }
+            .toolbar { toolbar }
+            .alert(item: $activeAlert) { alert in
+                switch alert {
+                case .value:
+                    return valueAboutAlert
+                case .symmetricUncertainty:
+                    return symmetricUncertaintyAboutAlert
                 }
-                
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                }
-            }
-            .alert(isPresented: $showingSymmetricUncertaintyAboutAlert) {
-                Alert(
-                    title: Text("Symmetric Uncertainty"),
-                    message: Text("If the value of uncertainty in the positive & negative directions is equal, your uncertainty is symmetric. If not, then it's not!"),
-                    dismissButton: .default(Text("OK")) { showingSymmetricUncertaintyAboutAlert = false }
-                )
             }
         }
     }
 }
 
+// MARK: - Intro section
+extension DeltaView {
+    @ViewBuilder var introSection: some View {
+        TextField("Name", text: $viewModel.delta.name)
+        
+        HStack {
+            Text("Value")
+            Button(action: {
+                activeAlert = .value
+            }) {
+                Image(systemName: "questionmark.circle")
+            }
+            CurrencyField("Value", value: $viewModel.delta.value, textAlignment: .right)
+        }
+    }
+}
+
+// MARK: - Uncertainty section
+extension DeltaView {
+    @ViewBuilder var uncertaintySection: some View {
+        Toggle(isOn: $uncertaintySamePositiveNegative) {
+            HStack {
+                Text("Symmetric")
+                Button(action: {
+                    activeAlert = .symmetricUncertainty
+                }) {
+                    Image(systemName: "questionmark.circle")
+                }
+            }
+        }
+        
+        HStack {
+            if uncertaintySamePositiveNegative {
+                Text("Value")
+                CurrencyField("Value", value: $singleUncertaintyValue, textAlignment: .right, onReturn: {
+                    viewModel.setUncertainty(singleUncertaintyValue)
+                }, onEditingChanged: { _ in
+                    viewModel.setUncertainty(singleUncertaintyValue)
+                })
+            } else {
+                Text("Positive Value")
+                CurrencyField("Positive Value", value: $viewModel.delta.positiveUncertainty, textAlignment: .right)
+            }
+        }
+        
+        if !uncertaintySamePositiveNegative {
+            HStack {
+                Text("Negative Value")
+                CurrencyField("Negative Value", value: $viewModel.delta.negativeUncertainty, textAlignment: .right)
+            }
+        }
+    }
+}
+
+// MARK: - Dates section
+extension DeltaView {
+    @ViewBuilder var datesSection: some View {
+        Picker("Repetition", selection: $viewModel.delta.dateRepetition) {
+            ForEach(DateRepetition.allCases) {
+                Text($0.rawValue.capitalized).tag($0)
+            }
+        }
+//        .pickerStyle(MenuPickerStyle())
+    }
+    
+    @ViewBuilder var customDatesSection: some View {
+        List {
+            ForEach(viewModel.sortedDates.indices, id: \.self) { dateIndex in
+                DatePicker(
+                    dateIndex == 0
+                        ? "Earliest Date" :
+                        (dateIndex == viewModel.sortedDates.count - 1
+                            ? "Latest Date"
+                            : ""),
+                    selection: $viewModel.sortedDates[dateIndex],
+                    displayedComponents: .date
+                )
+            }
+            .onDelete(perform: viewModel.deleteSortedDates)
+        }
+    }
+}
+
+// MARK: - Toolbar
+extension DeltaView {
+    @ToolbarContentBuilder var toolbar: some ToolbarContent {
+        ToolbarItem(placement: .cancellationAction) {
+            Button("Cancel") {
+                presentationMode.wrappedValue.dismiss()
+            }
+        }
+        
+        ToolbarItem(placement: .confirmationAction) {
+            Button("Save") {
+                presentationMode.wrappedValue.dismiss()
+            }
+        }
+    }
+}
+
+// MARK: - Alerts
+extension DeltaView {
+    enum AboutAlerts: String, Identifiable {
+        case value, symmetricUncertainty
+        
+        var id: String {
+            self.rawValue
+        }
+    }
+    
+    var valueAboutAlert: Alert {
+        Alert(
+            title: Text("Delta Value"),
+            message: Text("If this delta is making you money, make this value a positive number. If it's costing you money, make it negative."),
+            dismissButton: .default(Text("Got it!")) {
+                activeAlert = nil
+            }
+        )
+    }
+    
+    var symmetricUncertaintyAboutAlert: Alert {
+        Alert(
+            title: Text("Symmetric Uncertainty"),
+            message: Text("If the value of uncertainty in the positive & negative directions is equal, your uncertainty is symmetric. If not, then it's not!"),
+            dismissButton: .default(Text("Got it!")) {
+                activeAlert = nil
+            }
+        )
+    }
+}
+
+// MARK: - Previews
 struct DeltaView_Previews: PreviewProvider {
     static var previews: some View {
         DeltaView()

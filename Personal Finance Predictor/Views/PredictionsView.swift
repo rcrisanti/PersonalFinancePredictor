@@ -44,7 +44,7 @@ struct PredictionsView: View {
             }
             .sheet(isPresented: $isShowingNewPredictionSheet) {
                 NavigationView {
-                    PredictionEditView()
+                    PredictionView()
                 }
             }
         }

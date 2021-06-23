@@ -8,14 +8,13 @@
 import Foundation
 
 extension PredictionCD {
-    static func fromPrediction(_ prediction: Prediction) -> PredictionCD {
-        let predictionCD = PredictionCD(context: PersistenceController.shared.viewContext)
-        predictionCD.id = prediction.id
-        predictionCD.name = prediction.name
-        predictionCD.startDate = prediction.startDate
-        predictionCD.startBalance = prediction.startBalance
-        predictionCD.details = prediction.details
-        predictionCD.addToDeltas(NSSet(array: prediction.deltas.map { DeltaCD.fromDelta($0, for: predictionCD) } ))
-        return predictionCD
+    convenience init(prediction: Prediction) {
+        self.init(context: PersistenceController.shared.viewContext)
+        id = prediction.id
+        name = prediction.name
+        startDate = prediction.startDate
+        startBalance = prediction.startBalance
+        details = prediction.details
+        addToDeltas(NSSet(array: prediction.deltas.map { DeltaCD(delta: $0, for: self) } ))
     }
 }

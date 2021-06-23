@@ -8,16 +8,15 @@
 import Foundation
 
 extension DeltaCD {
-    static func fromDelta(_ delta: Delta, for predictionCD: PredictionCD) -> DeltaCD {
-        let deltaCD = DeltaCD(context: PersistenceController.shared.viewContext)
-        deltaCD.id = delta.id
-        deltaCD.name = delta.name
-        deltaCD.value = delta.value
-        deltaCD.positiveUncertainty = delta.positiveUncertainty
-        deltaCD.negativeUncertainty = delta.negativeUncertainty
-        deltaCD.details = delta.details
-        deltaCD.prediction = predictionCD
-        deltaCD.addToDates(NSSet(array: delta.dates.map { DateCD.fromDate($0, for: deltaCD) }))
-        return deltaCD
+    convenience init(delta: Delta, for predictionCD: PredictionCD) {
+        self.init(context: PersistenceController.shared.viewContext)
+        id = delta.id
+        name = delta.name
+        value = delta.value
+        positiveUncertainty = delta.positiveUncertainty
+        negativeUncertainty = delta.negativeUncertainty
+        details = delta.details
+        prediction = predictionCD
+        addToDates(NSSet(array: delta.dates.map { DateCD(date: $0, for: self) }))
     }
 }
