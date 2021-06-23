@@ -24,6 +24,10 @@
 		ED2994F626804B120030377A /* DeltaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2994F526804B120030377A /* DeltaView.swift */; };
 		ED408AB2268374EB0064091D /* PredictionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED408AB1268374EB0064091D /* PredictionRowView.swift */; };
 		ED408AB626837AE60064091D /* NumDeltasIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED408AB526837AE60064091D /* NumDeltasIndicatorView.swift */; };
+		ED408AB82683932D0064091D /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED408AB72683932D0064091D /* BackButton.swift */; };
+		ED408ABB26839F9A0064091D /* ToolbarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED408ABA26839F9A0064091D /* ToolbarType.swift */; };
+		ED408ABD2683ABAC0064091D /* DeltaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED408ABC2683ABAC0064091D /* DeltaTests.swift */; };
+		ED408ABF2683B1780064091D /* PredictionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED408ABE2683B1780064091D /* PredictionTests.swift */; };
 		ED4CF50A267E4EA100BA0100 /* PredictionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CF509267E4EA100BA0100 /* PredictionsView.swift */; };
 		ED4CF50C267E4ED700BA0100 /* PredictionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CF50B267E4ED700BA0100 /* PredictionsViewModel.swift */; };
 		ED53AE66267D2CFB00517245 /* Delta.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53AE65267D2CFB00517245 /* Delta.swift */; };
@@ -78,6 +82,10 @@
 		ED2994F526804B120030377A /* DeltaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeltaView.swift; sourceTree = "<group>"; };
 		ED408AB1268374EB0064091D /* PredictionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionRowView.swift; sourceTree = "<group>"; };
 		ED408AB526837AE60064091D /* NumDeltasIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumDeltasIndicatorView.swift; sourceTree = "<group>"; };
+		ED408AB72683932D0064091D /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		ED408ABA26839F9A0064091D /* ToolbarType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarType.swift; sourceTree = "<group>"; };
+		ED408ABC2683ABAC0064091D /* DeltaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeltaTests.swift; sourceTree = "<group>"; };
+		ED408ABE2683B1780064091D /* PredictionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionTests.swift; sourceTree = "<group>"; };
 		ED4CF509267E4EA100BA0100 /* PredictionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsView.swift; sourceTree = "<group>"; };
 		ED4CF50B267E4ED700BA0100 /* PredictionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsViewModel.swift; sourceTree = "<group>"; };
 		ED53AE65267D2CFB00517245 /* Delta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delta.swift; sourceTree = "<group>"; };
@@ -145,6 +153,7 @@
 				ED0815CA267C3F900074CFDF /* ViewModels */,
 				ED53AE64267D2CE400517245 /* Models */,
 				ED0815CF267C42090074CFDF /* Data Model */,
+				ED408AB926839F8E0064091D /* Utilities */,
 				ED0815A3267C3BEA0074CFDF /* Info.plist */,
 				ED081599267C3BEA0074CFDF /* Assets.xcassets */,
 				ED08159B267C3BEA0074CFDF /* Preview Content */,
@@ -165,6 +174,8 @@
 			children = (
 				ED0815AC267C3BEB0074CFDF /* Personal_Finance_PredictorTests.swift */,
 				ED0815AE267C3BEB0074CFDF /* Info.plist */,
+				ED408ABC2683ABAC0064091D /* DeltaTests.swift */,
+				ED408ABE2683B1780064091D /* PredictionTests.swift */,
 			);
 			path = "Personal Finance PredictorTests";
 			sourceTree = "<group>";
@@ -208,8 +219,17 @@
 				ED2994F32680463D0030377A /* BottomSheet.swift */,
 				EDF74DC22681949A0070AE75 /* CurrencyField.swift */,
 				EDACE339268284DA00234076 /* YearAgnosticDatePickerView.swift */,
+				ED408AB72683932D0064091D /* BackButton.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		ED408AB926839F8E0064091D /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				ED408ABA26839F9A0064091D /* ToolbarType.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		ED4CF508267E4E8F00BA0100 /* Views */ = {
@@ -370,9 +390,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED53AE66267D2CFB00517245 /* Delta.swift in Sources */,
+				ED408ABB26839F9A0064091D /* ToolbarType.swift in Sources */,
 				ED2994F626804B120030377A /* DeltaView.swift in Sources */,
 				ED90DB31267FA2950044317D /* PredictionView.swift in Sources */,
 				ED90DB33267FA6120044317D /* DeltaRowView.swift in Sources */,
+				ED408AB82683932D0064091D /* BackButton.swift in Sources */,
 				ED4CF50A267E4EA100BA0100 /* PredictionsView.swift in Sources */,
 				ED2994ED268037B30030377A /* DeltaCD+fromDelta.swift in Sources */,
 				ED08159F267C3BEA0074CFDF /* Persistence.swift in Sources */,
@@ -400,6 +422,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED408ABF2683B1780064091D /* PredictionTests.swift in Sources */,
+				ED408ABD2683ABAC0064091D /* DeltaTests.swift in Sources */,
 				ED0815AD267C3BEB0074CFDF /* Personal_Finance_PredictorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

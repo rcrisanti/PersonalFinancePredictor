@@ -12,100 +12,144 @@ struct PredictionView: View {
     @State private var isShowingNewDeltaSheet = false
     @ObservedObject var viewModel: PredictionViewModel
     
-    init(viewModel: PredictionViewModel = PredictionViewModel()) {
+    let toolbarType: ToolbarType
+    
+    init(viewModel: PredictionViewModel = PredictionViewModel(), toolbarType: ToolbarType) {
         self.viewModel = viewModel
+        self.toolbarType = toolbarType
     }
     
     var body: some View {
         Form {
             Section {
-                TextField("Name", text: $viewModel.prediction.name)
-                
-                DatePicker("Start Date", selection: $viewModel.prediction.startDate, displayedComponents: .date)
-                
-                HStack {
-                    Text("Initial Balance")
-                    CurrencyField("Initial Balance", value: $viewModel.prediction.startBalance, textAlignment: .right)
-                }
+                introSection
             }
             
             Section(header: Text("Description")) {
                 TextEditor(text: $viewModel.prediction.details)
             }
             
+//            Section(header: VStack(alignment: .leading, spacing: 10) {
+//                Button(action: {
+//                    isShowingNewDeltaSheet = true
+//                }) {
+//                    Label("Add Earning/Fee", systemImage: "plus")
+//                }
+//
+//                Text("Earnings")
+//            }) {
+//                earningsSection
+//            }
+//
+//            Section(header: Text("Fees"), footer: Text("Don't worry... all of this can be updated at any time!")) {
+//                feesSection
+//            }
+            
             Section(header: HStack {
-                Text("Earnings")
+                Text("Deltas")
                 Spacer()
                 Button(action: {
                     isShowingNewDeltaSheet = true
                 }) {
-                    Image(systemName: "plus")
+                    Label("Add Delta", systemImage: "plus")
                 }
             }) {
-                List {
-                    ForEach(viewModel.prediction.deltas.filter( { $0.value >= 0} )) { earning in
-                        DeltaRowView(delta: earning)
-                    }
-                    .onDelete(perform: { indexSet in
-                        viewModel.deleteDeltas(atOffsets: indexSet, deleteFrom: .nonnegative)
-                    })
-                }
-            }
-            
-            Section(
-                header: HStack {
-                    Text("Fees")
-                    Spacer()
-                    Button(action: {
-                        isShowingNewDeltaSheet = true
-                    }) {
-                        Image(systemName: "plus")
-                    }
-                },
-                footer: Text("Don't worry... all of this can be updated at any time!")
-            ) {
-                List {
-                    ForEach(viewModel.prediction.deltas.filter( { $0.value < 0} )) { fee in
-                        DeltaRowView(delta: fee)
-                    }
-                    .onDelete(perform: { indexSet in
-                        viewModel.deleteDeltas(atOffsets: indexSet, deleteFrom: .negative)
-                    })
-                }
+                allDeltasSection
             }
         }
         .navigationTitle("Prediction")
+        .navigationBarBackButtonHidden(true)
         .toolbar { toolbar }
         .sheet(isPresented: $isShowingNewDeltaSheet) {
-            DeltaView(viewModel: DeltaViewModel(newFor: viewModel.prediction))
+            NavigationView {
+                DeltaView(viewModel: DeltaViewModel(newFor: viewModel.prediction), toolbarType: .sheet)
+            }
         }
     }
 }
 
 // MARK: - Intro section
 extension PredictionView {
+    @ViewBuilder var introSection: some View {
+        TextField("Name", text: $viewModel.prediction.name)
+        
+        DatePicker("Start Date", selection: $viewModel.prediction.startDate, displayedComponents: .date)
+        
+        HStack {
+            Text("Initial Balance")
+            CurrencyField("Initial Balance", value: $viewModel.prediction.startBalance, textAlignment: .right)
+        }
+    }
+}
+
+// MARK: - Deltas Section
+extension PredictionView {
+    @ViewBuilder var earningsSection: some View {
+        List {
+            ForEach(viewModel.earnings) { earning in
+                NavigationLink(destination: DeltaView(viewModel: DeltaViewModel(earning), toolbarType: .navigation)) {
+                    DeltaRowView(delta: earning)
+                }
+            }
+            .onDelete(perform: { indexSet in
+                viewModel.deleteDeltas(atOffsets: indexSet, deleteFrom: .earnings)
+            })
+        }
+    }
     
+    @ViewBuilder var feesSection: some View {
+        List {
+            ForEach(viewModel.fees) { fee in
+                NavigationLink(destination: DeltaView(viewModel: DeltaViewModel(fee), toolbarType: .navigation)) {
+                    DeltaRowView(delta: fee)
+                }
+            }
+            .onDelete(perform: { indexSet in
+                viewModel.deleteDeltas(atOffsets: indexSet, deleteFrom: .fees)
+            })
+        }
+    }
+    
+    @ViewBuilder var allDeltasSection: some View {
+        List {
+            ForEach(viewModel.prediction.deltas) { delta in
+                NavigationLink(destination: DeltaView(viewModel: DeltaViewModel(delta), toolbarType: .navigation)) {
+                    DeltaRowView(delta: delta)
+                }
+            }
+            .onDelete(perform: { indexSet in
+                viewModel.deleteDeltas(atOffsets: indexSet, deleteFrom: .all)
+            })
+        }
+    }
 }
 
 // MARK: - Toolbar
 extension PredictionView {
     @ToolbarContentBuilder var toolbar: some ToolbarContent {
-        ToolbarItem(placement: .cancellationAction) {
-            if viewModel.withFullToolbar {
+        ToolbarItem(placement: .navigationBarLeading) {
+            switch toolbarType {
+            case .sheet:
                 Button("Cancel") {
                     presentationMode.wrappedValue.dismiss()
                 }
-            } else {
-                EmptyView()
+            case .navigation:
+                BackButton(action: viewModel.save)
+                    .disabled(viewModel.isDisabled)
             }
         }
         
         ToolbarItem(placement: .confirmationAction) {
-            Button("Save") {
-                viewModel.save()
-                presentationMode.wrappedValue.dismiss()
+            switch toolbarType {
+            case .sheet:
+                Button("Save") {
+                    viewModel.save()
+                    presentationMode.wrappedValue.dismiss()
+                }
+                .disabled(viewModel.isDisabled)
+            case .navigation:
+                EmptyView()
             }
-            .disabled(viewModel.isDisabled)
         }
     }
 }
@@ -118,13 +162,13 @@ struct PredictionView_Previews: PreviewProvider {
         name: "",
         startBalance: -999_999.99,
         startDate: Date(),
-        deltas: [],
+        deltas: [Delta()],
         details: ""
     )
     
     static var previews: some View {
         NavigationView {
-            PredictionView(viewModel: PredictionViewModel(prediction: prediction))
+            PredictionView(viewModel: PredictionViewModel(prediction: prediction), toolbarType: .navigation)
         }
     }
 }

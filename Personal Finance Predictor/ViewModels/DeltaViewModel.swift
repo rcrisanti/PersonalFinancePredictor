@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import os.log
 
 class DeltaViewModel: ObservableObject {
     @Published var delta: Delta
@@ -57,8 +58,9 @@ class DeltaViewModel: ObservableObject {
 //        if let deltaCD = PredictionStorage.shared.getDelta(withId: delta.id) {
 //            deltaCD.update(from: delta)
 //        } else {
-//            _ = DeltaCD(delta: delta)
+//            _ = DeltaCD.from(delta)
 //        }
+        Self.logger.info("Saving delta")
         _ = DeltaCD.from(delta)
         PersistenceController.shared.save()
     }
@@ -71,4 +73,6 @@ class DeltaViewModel: ObservableObject {
 //    func dateRange(from start: Date, to end: Date, every interval: DateRepetition) -> [Date] {
 //
 //    }
+    
+    static let logger = Logger(subsystem: "com.rcrisanti.Personal-Finance-Predictor", category: "DeltaViewModel")
 }

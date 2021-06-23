@@ -14,53 +14,51 @@ struct DeltaView: View {
     @State private var singleUncertaintyValue: Double = 0
     @State private var activeAlert: AboutAlerts?
     
-    init(viewModel: DeltaViewModel? = nil) {
-        if let viewModel = viewModel {
-            _viewModel = StateObject(wrappedValue: viewModel)
-        } else {
-            _viewModel = StateObject(wrappedValue: DeltaViewModel())
-        }
+    let toolbarType: ToolbarType
+    
+    init(viewModel: DeltaViewModel = DeltaViewModel(), toolbarType: ToolbarType) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+        self.toolbarType = toolbarType
     }
     
     var body: some View {
-        NavigationView {
-            Form {
-                Section {
-                    introSection
-                }
-                
-                Section(header: Text("Description")) {
-                    TextEditor(text: $viewModel.delta.details)
-                }
-                
-                Section(header: Text("Uncertainty")) {
-                    uncertaintySection
-                }
-                
-                Section(header: Text("Dates")) {
-                    datesSection
-                }
-                
-                Section(header: HStack {
-                    Spacer()
-                    Button(action: {
-                        viewModel.delta.dates.append(Date())
-                    }) {
-                        Label("Add Date", systemImage: "plus")
-                    }
-                }) {
-                    customDatesSection
-                }
+        Form {
+            Section {
+                introSection
             }
-            .navigationBarTitle("New Delta")
-            .toolbar { toolbar }
-            .alert(item: $activeAlert) { alert in
-                switch alert {
-                case .value:
-                    return valueAboutAlert
-                case .symmetricUncertainty:
-                    return symmetricUncertaintyAboutAlert
+            
+            Section(header: Text("Description")) {
+                TextEditor(text: $viewModel.delta.details)
+            }
+            
+            Section(header: Text("Uncertainty")) {
+                uncertaintySection
+            }
+            
+            Section(header: Text("Dates")) {
+                datesSection
+            }
+            
+            Section(header: HStack {
+                Spacer()
+                Button(action: {
+                    viewModel.delta.dates.append(Date())
+                }) {
+                    Label("Add Date", systemImage: "plus")
                 }
+            }) {
+                customDatesSection
+            }
+        }
+        .navigationBarTitle("Delta")
+        .navigationBarBackButtonHidden(true)
+        .toolbar { toolbar }
+        .alert(item: $activeAlert) { alert in
+            switch alert {
+            case .value:
+                return valueAboutAlert
+            case .symmetricUncertainty:
+                return symmetricUncertaintyAboutAlert
             }
         }
     }
@@ -153,16 +151,28 @@ extension DeltaView {
 extension DeltaView {
     @ToolbarContentBuilder var toolbar: some ToolbarContent {
         ToolbarItem(placement: .cancellationAction) {
-            Button("Cancel") {
-                viewModel.cancel()
-                presentationMode.wrappedValue.dismiss()
+            switch toolbarType {
+            case .sheet:
+                Button("Cancel") {
+                    viewModel.cancel()
+                    presentationMode.wrappedValue.dismiss()
+                }
+            case .navigation:
+                BackButton(action: viewModel.save)
+                    .disabled(viewModel.isDisabled)
             }
         }
         
         ToolbarItem(placement: .confirmationAction) {
-            Button("Save") {
-                viewModel.save()
-                presentationMode.wrappedValue.dismiss()
+            switch toolbarType {
+            case .sheet:
+                Button("Save") {
+                    viewModel.save()
+                    presentationMode.wrappedValue.dismiss()
+                }
+                .disabled(viewModel.isDisabled)
+            case .navigation:
+                EmptyView()
             }
         }
     }
@@ -202,6 +212,8 @@ extension DeltaView {
 // MARK: - Previews
 struct DeltaView_Previews: PreviewProvider {
     static var previews: some View {
-        DeltaView()
+        NavigationView {
+            DeltaView(toolbarType: .navigation)
+        }
     }
 }

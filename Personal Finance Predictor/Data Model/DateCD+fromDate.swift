@@ -8,14 +8,47 @@
 import Foundation
 
 extension DateCD {
-    convenience init(date: Date, for deltaCD: DeltaCD, withId: UUID? = nil) {
-        self.init(context: PersistenceController.shared.viewContext)
-        if let id = withId {
-            self.id = id
+    static func from(_ date: Date, for deltaCD: DeltaCD? = nil, withId id: UUID? = nil) -> DateCD {
+        if let id = id {
+            if let dateCD = PredictionStorage.shared.getDate(withId: id) {
+                dateCD.update(from: date, for: deltaCD, withId: id)
+                return dateCD
+            } else {
+                let dateCD = DateCD(context: PersistenceController.shared.viewContext)
+                dateCD.id = id
+                dateCD.date = date
+                
+                if let deltaCD = deltaCD {
+                    dateCD.delta = deltaCD
+                } else {
+                    dateCD.delta = DeltaCD.from(Delta())
+                }
+                PersistenceController.shared.save()
+                return dateCD
+            }
         } else {
-            self.id = UUID()
+            let dateCD = DateCD(context: PersistenceController.shared.viewContext)
+            dateCD.id = UUID()
+            dateCD.date = date
+            
+            if let deltaCD = deltaCD {
+                dateCD.delta = deltaCD
+            } else {
+                dateCD.delta = DeltaCD.from(Delta())
+            }
+            PersistenceController.shared.save()
+            return dateCD
         }
+    }
+    
+    func update(from date: Date, for deltaCD: DeltaCD? = nil, withId id: UUID? = nil) {
         self.date = date
-        delta = deltaCD
+        if let deltaCD = deltaCD {
+            self.delta = deltaCD
+        }
+        if let id = id {
+            self.id = id
+        }
+        PersistenceController.shared.save()
     }
 }

@@ -8,10 +8,6 @@
 import SwiftUI
 
 struct NumDeltasIndicatorView: View {
-    enum DeltaFilter {
-        case earnings, fees, all
-    }
-    
     var prediction: Prediction
     var filter: DeltaFilter
     

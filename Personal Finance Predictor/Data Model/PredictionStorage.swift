@@ -52,15 +52,24 @@ class PredictionStorage: NSObject, ObservableObject {
     }
     
     func getDelta(withId: UUID) -> DeltaCD? {
-        let nestedDeltas: [[DeltaCD]] = predictions.value.map { $0.deltas?.allObjects as! [DeltaCD] }
-        
-        let deltas = nestedDeltas.joined()
+        let deltas: [DeltaCD] = Array(predictions.value.map { $0.deltas?.allObjects as! [DeltaCD] }.joined())
         
         guard let delta = deltas.first(where: { $0.id == withId } ) else {
             Self.logger.warning("Could not find a DeltaCD with id \(withId.uuidString)")
             return nil
         }
         return delta
+    }
+    
+    func getDate(withId: UUID) -> DateCD? {
+        let deltas: [DeltaCD] = Array(predictions.value.map { $0.deltas?.allObjects as! [DeltaCD] }.joined())
+        let dates: [DateCD] = Array(deltas.map { $0.dates?.allObjects as! [DateCD] }.joined())
+        
+        guard let date = dates.first(where: { $0.id == withId } ) else {
+            Self.logger.warning("Could not find a DateCD with id \(withId.uuidString)")
+            return nil
+        }
+        return date
     }
     
     static let logger = Logger(subsystem: "com.rcrisanti.Personal-Finance-Predictor", category: "PredictionStorage")

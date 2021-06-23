@@ -18,12 +18,31 @@ struct DeltaRowView: View {
         }
     }
     
+    var dates: String {
+        let dateStrings = delta.dates.sorted().map { dateFormatter.string(from: $0) }
+        return dateStrings.joined(separator: ", ")
+    }
+    
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+        return formatter
+    }
+    
     var body: some View {
-        HStack {
-            Text(delta.name)
-            Spacer()
-            Text("\(abs(delta.value), specifier: specifier)")
+        VStack(alignment: .leading) {
+            HStack {
+                Text(delta.name)
+                    .font(.headline)
+                Spacer()
+                Text("\(abs(delta.value), specifier: specifier)")
+            }
+            
+            Text("\(delta.dateRepetition.rawValue.capitalized)\(delta.dates.count > 0 ? ": " : "")\(dates)")
+                .font(.caption)
         }
+        .lineLimit(1)
     }
 }
 

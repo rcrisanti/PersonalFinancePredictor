@@ -9,23 +9,31 @@ import Foundation
 import Combine
 import os.log
 
+enum DeltaFilter {
+    case earnings, fees, all
+}
+
 class PredictionViewModel: ObservableObject {
     @Published var prediction: Prediction
-    
-    let withFullToolbar: Bool
-    
+        
     init(prediction: Prediction? = nil) {
         if let prediction = prediction {
             self.prediction = prediction
-            withFullToolbar = false
         } else {
             self.prediction = Prediction()
-            withFullToolbar = true
         }
     }
     
     var isDisabled: Bool {
         prediction.name.isEmpty
+    }
+    
+    var earnings: [Delta] {
+        prediction.deltas.filter { $0.value >= 0 }
+    }
+    
+    var fees: [Delta] {
+        prediction.deltas.filter { $0.value < 0 }
     }
     
     // MARK: Save
@@ -39,24 +47,20 @@ class PredictionViewModel: ObservableObject {
     }
     
     // MARK: Delete
-    enum DeleteFrom {
-        case all, negative, nonnegative
-    }
-    
-    func deleteDeltas(atOffsets: IndexSet, deleteFrom: DeleteFrom = .all) {
+    func deleteDeltas(atOffsets: IndexSet, deleteFrom: DeltaFilter = .all) {
         for index in atOffsets {
             switch deleteFrom {
             case .all:
                 prediction.deltas.remove(at: index)
-            case.negative:
-                let toRemove = prediction.deltas.filter( { $0.value >= 0} )[index]
+            case .fees:
+                let toRemove = fees[index]
                 if let foundIndex = prediction.deltas.firstIndex(of: toRemove) {
                     prediction.deltas.remove(at: foundIndex)
                 } else {
                     Self.logger.warning("Could not find Delta \(toRemove.name) in Prediction deltas")
                 }
-            case.nonnegative:
-                let toRemove = prediction.deltas.filter( { $0.value > 0} )[index]
+            case .earnings:
+                let toRemove = earnings[index]
                 if let foundIndex = prediction.deltas.firstIndex(of: toRemove) {
                     prediction.deltas.remove(at: foundIndex)
                 } else {
