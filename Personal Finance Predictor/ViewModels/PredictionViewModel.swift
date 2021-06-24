@@ -14,7 +14,11 @@ enum DeltaFilter {
 }
 
 class PredictionViewModel: ObservableObject {
-    @Published var prediction: Prediction
+    @Published var prediction: Prediction {
+        willSet {
+            Self.logger.info("willSet Prediction to \(newValue)")
+        }
+    }
         
     init(prediction: Prediction? = nil) {
         if let prediction = prediction {

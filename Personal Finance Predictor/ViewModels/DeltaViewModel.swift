@@ -9,7 +9,11 @@ import Foundation
 import os.log
 
 class DeltaViewModel: ObservableObject {
-    @Published var delta: Delta
+    @Published var delta: Delta {
+        willSet {
+            Self.logger.info("willSet Delta to \(newValue)")
+        }
+    }
     
     var sortedDates: [Date] {
         get {
@@ -55,13 +59,13 @@ class DeltaViewModel: ObservableObject {
     
     // MARK: Save & cancel
     func save() {
-//        if let deltaCD = PredictionStorage.shared.getDelta(withId: delta.id) {
-//            deltaCD.update(from: delta)
-//        } else {
-//            _ = DeltaCD.from(delta)
-//        }
         Self.logger.info("Saving delta")
-        _ = DeltaCD.from(delta)
+        if let deltaCD = PredictionStorage.shared.getDelta(withId: delta.id) {
+            deltaCD.update(from: delta)
+        } else {
+            _ = DeltaCD(delta: delta)
+        }
+//        _ = DeltaCD.from(delta)
         PersistenceController.shared.save()
     }
     

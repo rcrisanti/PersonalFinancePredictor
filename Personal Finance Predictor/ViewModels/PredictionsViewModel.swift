@@ -14,12 +14,17 @@ import Combine
 class PredictionsViewModel: ObservableObject {
     @Published var predictionsCD: [PredictionCD] = [] {
         willSet {
+            Self.logger.info("willSet predictionsCD to \(newValue)")
             predictions = newValue.map { Prediction($0) }
-            predictionVMs = predictions.map { PredictionViewModel(prediction: $0) }
+//            predictionVMs = predictions.map { PredictionViewModel(prediction: $0) }
         }
     }
-    @Published var predictions: [Prediction] = []
-    @Published var predictionVMs: [PredictionViewModel] = []
+    @Published var predictions: [Prediction] = [] {
+        willSet {
+            Self.logger.info("willSet predictions to \(newValue)")
+        }
+    }
+//    @Published var predictionVMs: [PredictionViewModel] = []
     
     private var cancellable: AnyCancellable?
     
