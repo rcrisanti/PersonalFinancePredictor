@@ -26,8 +26,7 @@ extension Prediction {
         name = ""
         startBalance = 0
         startDate = Date()
-//        deltas = []
-        deltas = [Delta(), Delta()]
+        deltas = []
         details = ""
     }
 }
