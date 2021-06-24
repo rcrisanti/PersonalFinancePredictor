@@ -30,33 +30,33 @@ struct PredictionView: View {
                 TextEditor(text: $viewModel.details)
             }
             
-//            Section(header: VStack(alignment: .leading, spacing: 10) {
-//                Button(action: {
-//                    isShowingNewDeltaSheet = true
-//                }) {
-//                    Label("Add Earning/Fee", systemImage: "plus")
-//                }
-//
-//                Text("Earnings")
-//            }) {
-//                earningsSection
-//            }
-//
-//            Section(header: Text("Fees"), footer: Text("Don't worry... all of this can be updated at any time!")) {
-//                feesSection
-//            }
-            
-            Section(header: HStack {
-                Text("Deltas")
-                Spacer()
+            Section(header: VStack(alignment: .leading, spacing: 10) {
                 Button(action: {
                     isShowingNewDeltaSheet = true
                 }) {
-                    Label("Add Delta", systemImage: "plus")
+                    Label("Add Earning/Fee", systemImage: "plus")
                 }
-            }) {                
-                allDeltasSection
+
+                Text("Earnings")
+            }) {
+                earningsSection
             }
+
+            Section(header: Text("Fees"), footer: Text("Don't worry... all of this can be updated at any time!")) {
+                feesSection
+            }
+            
+//            Section(header: HStack {
+//                Text("Deltas")
+//                Spacer()
+//                Button(action: {
+//                    isShowingNewDeltaSheet = true
+//                }) {
+//                    Label("Add Delta", systemImage: "plus")
+//                }
+//            }) {
+//                allDeltasSection
+//            }
         }
         .navigationTitle("Prediction")
         .navigationBarBackButtonHidden(true)
@@ -83,31 +83,31 @@ extension PredictionView {
 
 // MARK: - Deltas Section
 extension PredictionView {
-//    @ViewBuilder var earningsSection: some View {
-//        List {
-//            ForEach(viewModel.earnings) { earning in
-//                NavigationLink(destination: DeltaView(viewModel: $viewModel.deltaVMs[viewModel.getIndexOfDeltaViewModel(withId: earning.id)], toolbarType: .navigation)) {
-//                    DeltaRowView(name: earning.name, value: earning.value, dates: earning.dates, dateRepetitionName: earning.dateRepetition.rawValue)
-//                }
-//            }
-//            .onDelete(perform: { indexSet in
-//                viewModel.deleteDeltas(atOffsets: indexSet, deleteFrom: .earnings)
-//            })
-//        }
-//    }
+    @ViewBuilder var earningsSection: some View {
+        List {
+            ForEach(viewModel.earnings) { earning in
+                NavigationLink(destination: DeltaView(delta: $viewModel.deltas[viewModel.getIndexOfDelta(withId: earning.id)], toolbarType: .navigation)) {
+                    DeltaRowView(name: earning.name, value: earning.value, dates: earning.dates, dateRepetitionName: earning.dateRepetition.rawValue)
+                }
+            }
+            .onDelete(perform: { indexSet in
+                viewModel.deleteDeltas(atOffsets: indexSet, deleteFrom: .earnings)
+            })
+        }
+    }
     
-//    @ViewBuilder var feesSection: some View {
-//        List {
-//            ForEach(viewModel.fees) { fee in
-//                NavigationLink(destination: DeltaView(viewModel: $viewModel.deltaVMs[viewModel.getIndexOfDeltaViewModel(withId: fee.id)], toolbarType: .navigation)) {
-//                    DeltaRowView(name: fee.name, value: fee.value, dates: fee.dates, dateRepetitionName: fee.dateRepetition.rawValue)
-//                }
-//            }
-//            .onDelete(perform: { indexSet in
-//                viewModel.deleteDeltas(atOffsets: indexSet, deleteFrom: .fees)
-//            })
-//        }
-//    }
+    @ViewBuilder var feesSection: some View {
+        List {
+            ForEach(viewModel.fees) { fee in
+                NavigationLink(destination: DeltaView(delta: $viewModel.deltas[viewModel.getIndexOfDelta(withId: fee.id)], toolbarType: .navigation)) {
+                    DeltaRowView(name: fee.name, value: fee.value, dates: fee.dates, dateRepetitionName: fee.dateRepetition.rawValue)
+                }
+            }
+            .onDelete(perform: { indexSet in
+                viewModel.deleteDeltas(atOffsets: indexSet, deleteFrom: .fees)
+            })
+        }
+    }
     
     @ViewBuilder var allDeltasSection: some View {
         List {

@@ -23,6 +23,7 @@
 		ED2994F42680463D0030377A /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2994F32680463D0030377A /* BottomSheet.swift */; };
 		ED2994F626804B120030377A /* DeltaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2994F526804B120030377A /* DeltaView.swift */; };
 		ED400FE72684E82100E40F74 /* AddDeltaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED400FE62684E82100E40F74 /* AddDeltaView.swift */; };
+		ED400FEB2685196500E40F74 /* DeltaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED400FEA2685196500E40F74 /* DeltaViewModel.swift */; };
 		ED408AB2268374EB0064091D /* PredictionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED408AB1268374EB0064091D /* PredictionRowView.swift */; };
 		ED408AB626837AE60064091D /* NumDeltasIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED408AB526837AE60064091D /* NumDeltasIndicatorView.swift */; };
 		ED408AB82683932D0064091D /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED408AB72683932D0064091D /* BackButton.swift */; };
@@ -81,6 +82,7 @@
 		ED2994F32680463D0030377A /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
 		ED2994F526804B120030377A /* DeltaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeltaView.swift; sourceTree = "<group>"; };
 		ED400FE62684E82100E40F74 /* AddDeltaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeltaView.swift; sourceTree = "<group>"; };
+		ED400FEA2685196500E40F74 /* DeltaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeltaViewModel.swift; sourceTree = "<group>"; };
 		ED408AB1268374EB0064091D /* PredictionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionRowView.swift; sourceTree = "<group>"; };
 		ED408AB526837AE60064091D /* NumDeltasIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumDeltasIndicatorView.swift; sourceTree = "<group>"; };
 		ED408AB72683932D0064091D /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			children = (
 				ED4CF50B267E4ED700BA0100 /* PredictionsViewModel.swift */,
 				ED0815CD267C40780074CFDF /* PredictionViewModel.swift */,
+				ED400FEA2685196500E40F74 /* DeltaViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				ED08159F267C3BEA0074CFDF /* Persistence.swift in Sources */,
 				ED2994EB2680370F0030377A /* DateCD+fromDate.swift in Sources */,
 				EDB0A1C7267EE39C00B45320 /* PredictionStorage.swift in Sources */,
+				ED400FEB2685196500E40F74 /* DeltaViewModel.swift in Sources */,
 				ED0815CE267C40780074CFDF /* PredictionViewModel.swift in Sources */,
 				EDACE33A268284DA00234076 /* YearAgnosticDatePickerView.swift in Sources */,
 				ED2994F42680463D0030377A /* BottomSheet.swift in Sources */,

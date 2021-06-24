@@ -13,12 +13,11 @@ struct DeltaRowView: View {
     var dates: [Date]
     var dateRepetitionName: String
     
-    var specifier: String {
-        if value >= 0 {
-            return "$%.2f"
-        } else {
-            return "($%.2f)"
-        }
+    var currencyValue: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        
+        return formatter.string(for: value) ?? "$0"
     }
     
     var datesString: String {
@@ -39,7 +38,7 @@ struct DeltaRowView: View {
                 Text(name)
                     .font(.headline)
                 Spacer()
-                Text("\(abs(value), specifier: specifier)")
+                Text("\(currencyValue)")
             }
             
             Text("\(dateRepetitionName.capitalized)\(dates.count > 0 ? ": " : "")\(datesString)")
@@ -51,6 +50,6 @@ struct DeltaRowView: View {
 
 struct DeltaRowView_Previews: PreviewProvider {
     static var previews: some View {
-        DeltaRowView(name: "My Delta", value: 124.1, dates: [Date(), Date(timeInterval: 12321, since: Date())], dateRepetitionName: "Custom")
+        DeltaRowView(name: "My Delta", value: -124.1, dates: [Date(), Date(timeInterval: 12321, since: Date())], dateRepetitionName: "Custom")
     }
 }

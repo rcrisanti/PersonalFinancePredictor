@@ -16,7 +16,7 @@ struct AddDeltaView: View {
     
     var body: some View {
         NavigationView {
-            DeltaView(delta: $delta, toolbarType: .sheet)
+            DeltaView(delta: $delta, toolbarType: .sheet, saveOnScenePhase: false)
         }
     }
 }

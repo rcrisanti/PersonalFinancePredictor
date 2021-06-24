@@ -15,11 +15,7 @@ enum DeltaFilter {
 }
 
 class PredictionViewModel: ObservableObject {
-    @Published private var prediction: Prediction {
-        willSet {
-            Self.logger.info("willSet Prediction to \(newValue)")
-        }
-    }
+    @Published private var prediction: Prediction
     
     func getIndexOfDelta(withId id: UUID) -> Int {
         guard let index = deltas.firstIndex(where: { $0.id == id }) else {
@@ -52,7 +48,11 @@ class PredictionViewModel: ObservableObject {
     
     var deltas: [Delta] {
         get { prediction.deltas }
-        set { prediction.deltas = newValue }
+        set {
+            prediction.deltas = newValue
+            earnings = getEarnings(from: newValue)
+            fees = getFees(from: newValue)
+        }
     }
     
     var details: String {
@@ -62,6 +62,8 @@ class PredictionViewModel: ObservableObject {
                 
     init(prediction: Prediction = Prediction()) {
         self.prediction = prediction
+        earnings = getEarnings(from: prediction.deltas)
+        fees = getFees(from: prediction.deltas)
     }
     
     // MARK: - Helper computed properties
@@ -69,12 +71,16 @@ class PredictionViewModel: ObservableObject {
         prediction.name.isEmpty
     }
     
-    var earnings: [Delta] {
-        prediction.deltas.filter { $0.value >= 0 }
-    }
+    @Published var earnings: [Delta] = []
 
-    var fees: [Delta] {
-        prediction.deltas.filter { $0.value < 0 }
+    @Published var fees: [Delta] = []
+    
+    func getEarnings(from deltas: [Delta]) -> [Delta] {
+        deltas.filter { $0.value >= 0 }.sorted(by: { abs($0.value) > abs($1.value) })
+    }
+    
+    func getFees(from deltas: [Delta]) -> [Delta] {
+        deltas.filter { $0.value < 0 }.sorted(by: { abs($0.value) > abs($1.value) })
     }
     
     // MARK: - Save, Delete, Add, Cancel
