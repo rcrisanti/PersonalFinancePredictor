@@ -16,15 +16,19 @@ class PredictionsViewModel: ObservableObject {
         willSet {
             Self.logger.info("willSet predictionsCD to \(newValue)")
             predictions = newValue.map { Prediction($0) }
-//            predictionVMs = predictions.map { PredictionViewModel(prediction: $0) }
         }
     }
     @Published var predictions: [Prediction] = [] {
         willSet {
             Self.logger.info("willSet predictions to \(newValue)")
+//            predictionVMs = newValue.map { PredictionViewModel(prediction: $0) }
         }
     }
-//    @Published var predictionVMs: [PredictionViewModel] = []
+//    @Published var predictionVMs: [PredictionViewModel] = [] {
+//        willSet {
+//            Self.logger.info("willSet predictionVMs to \(newValue)")
+//        }
+//    }
     
     private var cancellable: AnyCancellable?
     

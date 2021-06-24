@@ -17,15 +17,27 @@ class PredictionViewModel: ObservableObject {
     @Published var prediction: Prediction {
         willSet {
             Self.logger.info("willSet Prediction to \(newValue)")
+//            deltaVMs = newValue.deltas.map { DeltaViewModel($0) }
         }
     }
-        
+//    @Published var deltaVMs: [DeltaViewModel] = [] {
+//        willSet {
+//            Self.logger.info("willSet deltaVMs to \(newValue)")
+//        }
+//    }
+    
+    var cancellable: AnyCancellable?
+            
     init(prediction: Prediction? = nil) {
         if let prediction = prediction {
             self.prediction = prediction
         } else {
             self.prediction = Prediction()
         }
+        
+//        cancellable = $deltaVMs.sink { _ in
+//            self.objectWillChange.send()
+//        }
     }
     
     var isDisabled: Bool {

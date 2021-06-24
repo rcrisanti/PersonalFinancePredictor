@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import os.log
 
 class DeltaViewModel: ObservableObject {
