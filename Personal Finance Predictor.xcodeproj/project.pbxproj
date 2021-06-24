@@ -22,6 +22,8 @@
 		ED2994F12680442A0030377A /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2994F02680442A0030377A /* BottomSheetView.swift */; };
 		ED2994F42680463D0030377A /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2994F32680463D0030377A /* BottomSheet.swift */; };
 		ED2994F626804B120030377A /* DeltaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2994F526804B120030377A /* DeltaView.swift */; };
+		ED400FE72684E82100E40F74 /* AddDeltaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED400FE62684E82100E40F74 /* AddDeltaView.swift */; };
+		ED400FEB2685196500E40F74 /* DeltaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED400FEA2685196500E40F74 /* DeltaViewModel.swift */; };
 		ED408AB2268374EB0064091D /* PredictionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED408AB1268374EB0064091D /* PredictionRowView.swift */; };
 		ED408AB626837AE60064091D /* NumDeltasIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED408AB526837AE60064091D /* NumDeltasIndicatorView.swift */; };
 		ED408AB82683932D0064091D /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED408AB72683932D0064091D /* BackButton.swift */; };
@@ -34,7 +36,6 @@
 		ED53AE68267D2F6F00517245 /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53AE67267D2F6F00517245 /* Prediction.swift */; };
 		ED90DB31267FA2950044317D /* PredictionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED90DB30267FA2950044317D /* PredictionView.swift */; };
 		ED90DB33267FA6120044317D /* DeltaRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED90DB32267FA6120044317D /* DeltaRowView.swift */; };
-		EDACE33626825E3400234076 /* DeltaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDACE33526825E3400234076 /* DeltaViewModel.swift */; };
 		EDACE33826826CD500234076 /* DateRepetition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDACE33726826CD500234076 /* DateRepetition.swift */; };
 		EDACE33A268284DA00234076 /* YearAgnosticDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDACE339268284DA00234076 /* YearAgnosticDatePickerView.swift */; };
 		EDB0A1C7267EE39C00B45320 /* PredictionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB0A1C6267EE39C00B45320 /* PredictionStorage.swift */; };
@@ -80,6 +81,8 @@
 		ED2994F02680442A0030377A /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		ED2994F32680463D0030377A /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
 		ED2994F526804B120030377A /* DeltaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeltaView.swift; sourceTree = "<group>"; };
+		ED400FE62684E82100E40F74 /* AddDeltaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeltaView.swift; sourceTree = "<group>"; };
+		ED400FEA2685196500E40F74 /* DeltaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeltaViewModel.swift; sourceTree = "<group>"; };
 		ED408AB1268374EB0064091D /* PredictionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionRowView.swift; sourceTree = "<group>"; };
 		ED408AB526837AE60064091D /* NumDeltasIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumDeltasIndicatorView.swift; sourceTree = "<group>"; };
 		ED408AB72683932D0064091D /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
@@ -92,7 +95,6 @@
 		ED53AE67267D2F6F00517245 /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		ED90DB30267FA2950044317D /* PredictionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionView.swift; sourceTree = "<group>"; };
 		ED90DB32267FA6120044317D /* DeltaRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeltaRowView.swift; sourceTree = "<group>"; };
-		EDACE33526825E3400234076 /* DeltaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeltaViewModel.swift; sourceTree = "<group>"; };
 		EDACE33726826CD500234076 /* DateRepetition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRepetition.swift; sourceTree = "<group>"; };
 		EDACE339268284DA00234076 /* YearAgnosticDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearAgnosticDatePickerView.swift; sourceTree = "<group>"; };
 		EDB0A1C6267EE39C00B45320 /* PredictionStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionStorage.swift; sourceTree = "<group>"; };
@@ -194,7 +196,7 @@
 			children = (
 				ED4CF50B267E4ED700BA0100 /* PredictionsViewModel.swift */,
 				ED0815CD267C40780074CFDF /* PredictionViewModel.swift */,
-				EDACE33526825E3400234076 /* DeltaViewModel.swift */,
+				ED400FEA2685196500E40F74 /* DeltaViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -240,6 +242,7 @@
 				ED408AB526837AE60064091D /* NumDeltasIndicatorView.swift */,
 				ED90DB30267FA2950044317D /* PredictionView.swift */,
 				ED2994F526804B120030377A /* DeltaView.swift */,
+				ED400FE62684E82100E40F74 /* AddDeltaView.swift */,
 				ED90DB32267FA6120044317D /* DeltaRowView.swift */,
 				ED2994F22680453B0030377A /* Utility */,
 			);
@@ -400,11 +403,13 @@
 				ED08159F267C3BEA0074CFDF /* Persistence.swift in Sources */,
 				ED2994EB2680370F0030377A /* DateCD+fromDate.swift in Sources */,
 				EDB0A1C7267EE39C00B45320 /* PredictionStorage.swift in Sources */,
+				ED400FEB2685196500E40F74 /* DeltaViewModel.swift in Sources */,
 				ED0815CE267C40780074CFDF /* PredictionViewModel.swift in Sources */,
 				EDACE33A268284DA00234076 /* YearAgnosticDatePickerView.swift in Sources */,
 				ED2994F42680463D0030377A /* BottomSheet.swift in Sources */,
 				ED0815A2267C3BEA0074CFDF /* Personal_Finance_Predictor.xcdatamodeld in Sources */,
 				EDF74DC32681949A0070AE75 /* CurrencyField.swift in Sources */,
+				ED400FE72684E82100E40F74 /* AddDeltaView.swift in Sources */,
 				ED4CF50C267E4ED700BA0100 /* PredictionsViewModel.swift in Sources */,
 				ED2994EF2680389C0030377A /* PredictionCD+fromPrediction.swift in Sources */,
 				ED408AB626837AE60064091D /* NumDeltasIndicatorView.swift in Sources */,
@@ -414,7 +419,6 @@
 				ED081596267C3BE90074CFDF /* Personal_Finance_PredictorApp.swift in Sources */,
 				ED2994F12680442A0030377A /* BottomSheetView.swift in Sources */,
 				EDACE33826826CD500234076 /* DateRepetition.swift in Sources */,
-				EDACE33626825E3400234076 /* DeltaViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

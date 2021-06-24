@@ -7,11 +7,7 @@
 
 import Foundation
 
-struct Delta: Identifiable, Hashable {
-    static func == (lhs: Delta, rhs: Delta) -> Bool {
-        lhs.id == rhs.id
-    }
-    
+struct Delta: Identifiable, Hashable, CustomStringConvertible {
     let id: UUID
     var name: String
     var value: Double
@@ -21,11 +17,15 @@ struct Delta: Identifiable, Hashable {
     var negativeUncertainty: Double
     var dateRepetition: DateRepetition
     var predictionId: UUID?
+    
+    var description: String {
+        "Delta(\(name), \(value))"
+    }
 }
 
 extension Delta {
-    init(for prediction: Prediction? = nil) {
-        id = UUID()
+    init(forPredictionWithId id: UUID? = nil) {
+        self.id = UUID()
         name = ""
         value = 0
         details = ""
@@ -33,7 +33,7 @@ extension Delta {
         positiveUncertainty = 0
         negativeUncertainty = 0
         dateRepetition = .custom
-        predictionId = prediction?.id
+        predictionId = id ?? UUID()
     }
 }
 
@@ -50,7 +50,6 @@ extension Delta {
         positiveUncertainty = delta.positiveUncertainty
         negativeUncertainty = delta.negativeUncertainty
         
-//        dateRepetition = DateRepetition(rawValue: delta.dateRepetition ?? "Custom") ?? .custom
         dateRepetition = .custom
         predictionId = delta.prediction?.id
     }

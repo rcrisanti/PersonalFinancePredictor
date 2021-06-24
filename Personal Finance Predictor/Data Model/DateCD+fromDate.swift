@@ -21,7 +21,7 @@ extension DateCD {
                 if let deltaCD = deltaCD {
                     dateCD.delta = deltaCD
                 } else {
-                    dateCD.delta = DeltaCD.from(Delta())
+                    dateCD.delta = DeltaCD(delta: Delta())
                 }
                 PersistenceController.shared.save()
                 return dateCD
@@ -34,7 +34,7 @@ extension DateCD {
             if let deltaCD = deltaCD {
                 dateCD.delta = deltaCD
             } else {
-                dateCD.delta = DeltaCD.from(Delta())
+                dateCD.delta = DeltaCD(delta: Delta())
             }
             PersistenceController.shared.save()
             return dateCD

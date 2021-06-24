@@ -8,18 +8,20 @@
 import SwiftUI
 
 struct DeltaRowView: View {
-    var delta: Delta
+    var name: String
+    var value: Double
+    var dates: [Date]
+    var dateRepetitionName: String
     
-    var specifier: String {
-        if delta.value >= 0 {
-            return "$%.2f"
-        } else {
-            return "($%.2f)"
-        }
+    var currencyValue: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        
+        return formatter.string(for: value) ?? "$0"
     }
     
-    var dates: String {
-        let dateStrings = delta.dates.sorted().map { dateFormatter.string(from: $0) }
+    var datesString: String {
+        let dateStrings = dates.sorted().map { dateFormatter.string(from: $0) }
         return dateStrings.joined(separator: ", ")
     }
     
@@ -33,13 +35,13 @@ struct DeltaRowView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text(delta.name)
+                Text(name)
                     .font(.headline)
                 Spacer()
-                Text("\(abs(delta.value), specifier: specifier)")
+                Text("\(currencyValue)")
             }
             
-            Text("\(delta.dateRepetition.rawValue.capitalized)\(delta.dates.count > 0 ? ": " : "")\(dates)")
+            Text("\(dateRepetitionName.capitalized)\(dates.count > 0 ? ": " : "")\(datesString)")
                 .font(.caption)
         }
         .lineLimit(1)
@@ -48,6 +50,6 @@ struct DeltaRowView: View {
 
 struct DeltaRowView_Previews: PreviewProvider {
     static var previews: some View {
-        DeltaRowView(delta: Delta(id: UUID(), name: "Paycheck", value: -850, details: "", dates: [], positiveUncertainty: 0, negativeUncertainty: 0, dateRepetition: .custom, predictionId: UUID()))
+        DeltaRowView(name: "My Delta", value: -124.1, dates: [Date(), Date(timeInterval: 12321, since: Date())], dateRepetitionName: "Custom")
     }
 }

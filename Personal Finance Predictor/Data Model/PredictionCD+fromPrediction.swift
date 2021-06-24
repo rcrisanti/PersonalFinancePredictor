@@ -20,7 +20,16 @@ extension PredictionCD {
         startBalance = prediction.startBalance
         details = prediction.details
         removeFromDeltas(deltas ?? NSSet())
-//        addToDeltas(NSSet(array: prediction.deltas.map { DeltaCD(delta: $0) } ))
-        addToDeltas(NSSet(array: prediction.deltas.map { DeltaCD.from($0) } ))
+        addToDeltas(NSSet(array: prediction.deltas.map({ delta in
+            if let deltaCD = PredictionStorage.shared.getDelta(withId: delta.id) {
+                deltaCD.update(from: delta)
+                PersistenceController.shared.save()
+                return deltaCD
+            } else {
+                let deltaCD = DeltaCD(delta: delta)
+                PersistenceController.shared.save()
+                return deltaCD
+            }
+        })))
     }
 }

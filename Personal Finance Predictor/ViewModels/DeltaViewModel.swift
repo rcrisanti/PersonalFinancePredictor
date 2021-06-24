@@ -2,77 +2,112 @@
 //  DeltaViewModel.swift
 //  Personal Finance Predictor
 //
-//  Created by Ryan Crisanti on 6/22/21.
+//  Created by Ryan Crisanti on 6/24/21.
 //
 
-import Foundation
-import os.log
+import SwiftUI
 
 class DeltaViewModel: ObservableObject {
-    @Published var delta: Delta
+    // MARK: Delta & Properties
+    @Binding private var delta: Delta
     
-    var sortedDates: [Date] {
-        get {
-            delta.dates.sorted()
-        } set {
+    @Published var name: String {
+        willSet {
+            delta.name = newValue
+        }
+    }
+    
+    @Published var value: Double {
+        willSet {
+            delta.value = newValue
+        }
+    }
+    
+    @Published var details: String {
+        willSet {
+            delta.details = newValue
+        }
+    }
+    
+    @Published var dates: [Date] {
+        willSet {
             delta.dates = newValue
+//            sortedDates = newValue.sorted()
         }
     }
     
-    var isDisabled: Bool {
-        delta.name.isEmpty
-    }
-    
-    init(_ delta: Delta? = nil) {
-        if let delta = delta {
-            self.delta = delta
-        } else {
-            self.delta = Delta()
+    @Published var positiveUncertainty: Double {
+        willSet {
+            delta.positiveUncertainty = newValue
         }
     }
     
-    init(newFor prediction: Prediction) {
-        delta = Delta(for: prediction)
-    }
-    
-    func setUncertainty(pos: Double, neg: Double) {
-        delta.positiveUncertainty = pos
-        delta.negativeUncertainty = neg
-    }
-    
-    func setUncertainty(_ to: Double) {
-        setUncertainty(pos: to, neg: to)
-    }
-    
-    func deleteSortedDates(at offsets: IndexSet) {
-        for index in offsets {
-            let dateToDelete = sortedDates[index]
-            if let index = delta.dates.firstIndex(of: dateToDelete) {
-                delta.dates.remove(at: index)
-            }
+    @Published var negativeUncertainty: Double {
+        willSet {
+            delta.negativeUncertainty = newValue
         }
     }
     
-    // MARK: Save & cancel
+    @Published var dateRepetition: DateRepetition {
+        willSet {
+            delta.dateRepetition = newValue
+        }
+    }
+    
+    var predictionId: UUID?
+    
+    init(delta: Binding<Delta>) {
+        _delta = delta
+        
+        name = delta.wrappedValue.name
+        value = delta.wrappedValue.value
+        details = delta.wrappedValue.details
+        dates = delta.wrappedValue.dates
+        positiveUncertainty = delta.wrappedValue.positiveUncertainty
+        negativeUncertainty = delta.wrappedValue.negativeUncertainty
+        dateRepetition = delta.wrappedValue.dateRepetition
+        
+        uncertaintyIsSymmetric = positiveUncertainty == negativeUncertainty
+        
+        sortDates()
+    }
+    
+    // MARK: - State properties
+    @Published var uncertaintyIsSymmetric = true
+    
+//    @Published var sortedDates: [Date]
+    
+    // MARK: - Helper Functions
+    func addDate() {
+        dates.append(Date())
+    }
+    
+    func sortDates(deadline: DispatchTime = .now()) {
+//        dates.sort()
+        
+        DispatchQueue.main.asyncAfter(deadline: deadline) {
+            self.dates.sort()
+        }        
+    }
+    
+    func setBothUncertainties(to value: Double) {
+        positiveUncertainty = value
+        negativeUncertainty = value
+    }
+    
+    // MARK: - Save & Delete
     func save() {
-//        if let deltaCD = PredictionStorage.shared.getDelta(withId: delta.id) {
-//            deltaCD.update(from: delta)
-//        } else {
-//            _ = DeltaCD.from(delta)
-//        }
-        Self.logger.info("Saving delta")
-        _ = DeltaCD.from(delta)
+        if let deltaCD = PredictionStorage.shared.getDelta(withId: delta.id) {
+            deltaCD.update(from: delta)
+        } else {
+            _ = DeltaCD(delta: delta)
+        }
         PersistenceController.shared.save()
     }
     
-    func cancel() {
-        PersistenceController.shared.viewContext.rollback()
-        PersistenceController.shared.save()
+    func deleteDates(at offsets: IndexSet) {
+        for index in offsets {
+            dates.remove(at: index)
+        }
     }
-    
-//    func dateRange(from start: Date, to end: Date, every interval: DateRepetition) -> [Date] {
-//
-//    }
-    
-    static let logger = Logger(subsystem: "com.rcrisanti.Personal-Finance-Predictor", category: "DeltaViewModel")
 }

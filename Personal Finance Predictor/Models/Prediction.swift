@@ -7,13 +7,17 @@
 
 import Foundation
 
-struct Prediction: Identifiable, Hashable {
+struct Prediction: Identifiable, Hashable, CustomStringConvertible {
     let id: UUID
     var name: String
     var startBalance: Double
     var startDate: Date
     var deltas: [Delta]
     var details: String
+    
+    var description: String {
+        "Prediction(\(name), deltas: \(deltas))"
+    }
 }
 
 extension Prediction {

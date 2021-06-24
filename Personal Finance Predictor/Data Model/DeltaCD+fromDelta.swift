@@ -8,21 +8,9 @@
 import Foundation
 
 extension DeltaCD {
-//    convenience init(delta: Delta) {
-//        self.init(context: PersistenceController.shared.viewContext)
-//        update(from: delta)
-//    }
-    
-    static func from(_ delta: Delta) -> DeltaCD {
-        if let deltaCD = PredictionStorage.shared.getDelta(withId: delta.id) {
-            deltaCD.update(from: delta)
-            return deltaCD
-        } else {
-            let deltaCD = DeltaCD(context: PersistenceController.shared.viewContext)
-            deltaCD.update(from: delta)
-            PersistenceController.shared.save()
-            return deltaCD
-        }
+    convenience init(delta: Delta) {
+        self.init(context: PersistenceController.shared.viewContext)
+        update(from: delta)
     }
     
     func update(from delta: Delta) {
