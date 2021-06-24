@@ -24,8 +24,8 @@ struct Delta: Identifiable, Hashable, CustomStringConvertible {
 }
 
 extension Delta {
-    init(for prediction: Prediction? = nil) {
-        id = UUID()
+    init(forPredictionWithId id: UUID? = nil) {
+        self.id = UUID()
         name = ""
         value = 0
         details = ""
@@ -33,7 +33,7 @@ extension Delta {
         positiveUncertainty = 0
         negativeUncertainty = 0
         dateRepetition = .custom
-        predictionId = prediction?.id
+        predictionId = id ?? UUID()
     }
 }
 

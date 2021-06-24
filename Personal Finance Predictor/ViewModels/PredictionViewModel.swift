@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import Combine
 import os.log
 
@@ -14,32 +15,56 @@ enum DeltaFilter {
 }
 
 class PredictionViewModel: ObservableObject {
-    @Published var prediction: Prediction {
+    @Published private var prediction: Prediction {
         willSet {
             Self.logger.info("willSet Prediction to \(newValue)")
-//            deltaVMs = newValue.deltas.map { DeltaViewModel($0) }
         }
     }
-//    @Published var deltaVMs: [DeltaViewModel] = [] {
-//        willSet {
-//            Self.logger.info("willSet deltaVMs to \(newValue)")
-//        }
-//    }
     
-    var cancellable: AnyCancellable?
-            
-    init(prediction: Prediction? = nil) {
-        if let prediction = prediction {
-            self.prediction = prediction
-        } else {
-            self.prediction = Prediction()
+    func getIndexOfDelta(withId id: UUID) -> Int {
+        guard let index = deltas.firstIndex(where: { $0.id == id }) else {
+            Self.logger.critical("Could not find index of Delta with ID \(id.uuidString) - returning an index of 0")
+            return 0
         }
-        
-//        cancellable = $deltaVMs.sink { _ in
-//            self.objectWillChange.send()
-//        }
+        return index
+    }
+
+    
+    // MARK: - Basic properties & init
+    var id: UUID {
+        get { prediction.id }
     }
     
+    var name: String {
+        get { prediction.name }
+        set { prediction.name = newValue }
+    }
+    
+    var startBalance: Double {
+        get { prediction.startBalance }
+        set { prediction.startBalance = newValue }
+    }
+    
+    var startDate: Date {
+        get { prediction.startDate }
+        set { prediction.startDate = newValue }
+    }
+    
+    var deltas: [Delta] {
+        get { prediction.deltas }
+        set { prediction.deltas = newValue }
+    }
+    
+    var details: String {
+        get { prediction.details }
+        set { prediction.details = newValue }
+    }
+                
+    init(prediction: Prediction = Prediction()) {
+        self.prediction = prediction
+    }
+    
+    // MARK: - Helper computed properties
     var isDisabled: Bool {
         prediction.name.isEmpty
     }
@@ -47,12 +72,12 @@ class PredictionViewModel: ObservableObject {
     var earnings: [Delta] {
         prediction.deltas.filter { $0.value >= 0 }
     }
-    
+
     var fees: [Delta] {
         prediction.deltas.filter { $0.value < 0 }
     }
     
-    // MARK: Save
+    // MARK: - Save, Delete, Add, Cancel
     func save() {
         if let predictionCD = PredictionStorage.shared.getPrediction(withId: prediction.id) {
             predictionCD.update(from: prediction)
@@ -62,23 +87,22 @@ class PredictionViewModel: ObservableObject {
         PersistenceController.shared.save()
     }
     
-    // MARK: Delete
     func deleteDeltas(atOffsets: IndexSet, deleteFrom: DeltaFilter = .all) {
         for index in atOffsets {
             switch deleteFrom {
             case .all:
-                prediction.deltas.remove(at: index)
+                deltas.remove(at: index)
             case .fees:
                 let toRemove = fees[index]
-                if let foundIndex = prediction.deltas.firstIndex(of: toRemove) {
-                    prediction.deltas.remove(at: foundIndex)
+                if let foundIndex = prediction.deltas.firstIndex(where: { $0.id == toRemove.id }) {
+                    deltas.remove(at: foundIndex)
                 } else {
                     Self.logger.warning("Could not find Delta \(toRemove.name) in Prediction deltas")
                 }
             case .earnings:
                 let toRemove = earnings[index]
-                if let foundIndex = prediction.deltas.firstIndex(of: toRemove) {
-                    prediction.deltas.remove(at: foundIndex)
+                if let foundIndex = prediction.deltas.firstIndex(where: { $0.id == toRemove.id }) {
+                    deltas.remove(at: foundIndex)
                 } else {
                     Self.logger.warning("Could not find Delta \(toRemove.name) in Prediction deltas")
                 }
@@ -86,5 +110,6 @@ class PredictionViewModel: ObservableObject {
         }
     }
     
+    // MARK: - Logger
     static let logger = Logger(subsystem: "com.rcisanti.Personal-Finance-Predictor", category: "PredictionViewModel")
 }

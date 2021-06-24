@@ -16,7 +16,7 @@ struct Prediction: Identifiable, Hashable, CustomStringConvertible {
     var details: String
     
     var description: String {
-        "Prediction(\(name), deltas: \(deltas)"
+        "Prediction(\(name), deltas: \(deltas))"
     }
 }
 
@@ -26,7 +26,8 @@ extension Prediction {
         name = ""
         startBalance = 0
         startDate = Date()
-        deltas = []
+//        deltas = []
+        deltas = [Delta(), Delta()]
         details = ""
     }
 }

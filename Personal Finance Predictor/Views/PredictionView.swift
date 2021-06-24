@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import os.log
 
 struct PredictionView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -26,7 +27,7 @@ struct PredictionView: View {
             }
             
             Section(header: Text("Description")) {
-                TextEditor(text: $viewModel.prediction.details)
+                TextEditor(text: $viewModel.details)
             }
             
 //            Section(header: VStack(alignment: .leading, spacing: 10) {
@@ -53,7 +54,7 @@ struct PredictionView: View {
                 }) {
                     Label("Add Delta", systemImage: "plus")
                 }
-            }) {
+            }) {                
                 allDeltasSection
             }
         }
@@ -61,9 +62,7 @@ struct PredictionView: View {
         .navigationBarBackButtonHidden(true)
         .toolbar { toolbar }
         .sheet(isPresented: $isShowingNewDeltaSheet) {
-            NavigationView {
-                DeltaView(viewModel: DeltaViewModel(newFor: viewModel.prediction), toolbarType: .sheet)
-            }
+            AddDeltaView(predictionId: viewModel.id)
         }
     }
 }
@@ -71,50 +70,50 @@ struct PredictionView: View {
 // MARK: - Intro section
 extension PredictionView {
     @ViewBuilder var introSection: some View {
-        TextField("Name", text: $viewModel.prediction.name)
+        TextField("Name", text: $viewModel.name)
         
-        DatePicker("Start Date", selection: $viewModel.prediction.startDate, displayedComponents: .date)
+        DatePicker("Start Date", selection: $viewModel.startDate, displayedComponents: .date)
         
         HStack {
             Text("Initial Balance")
-            CurrencyField("Initial Balance", value: $viewModel.prediction.startBalance, textAlignment: .right)
+            CurrencyField("Initial Balance", value: $viewModel.startBalance, textAlignment: .right)
         }
     }
 }
 
 // MARK: - Deltas Section
 extension PredictionView {
-    @ViewBuilder var earningsSection: some View {
-        List {
-            ForEach(viewModel.earnings) { earning in
-                NavigationLink(destination: DeltaView(viewModel: DeltaViewModel(earning), toolbarType: .navigation)) {
-                    DeltaRowView(delta: earning)
-                }
-            }
-            .onDelete(perform: { indexSet in
-                viewModel.deleteDeltas(atOffsets: indexSet, deleteFrom: .earnings)
-            })
-        }
-    }
+//    @ViewBuilder var earningsSection: some View {
+//        List {
+//            ForEach(viewModel.earnings) { earning in
+//                NavigationLink(destination: DeltaView(viewModel: $viewModel.deltaVMs[viewModel.getIndexOfDeltaViewModel(withId: earning.id)], toolbarType: .navigation)) {
+//                    DeltaRowView(name: earning.name, value: earning.value, dates: earning.dates, dateRepetitionName: earning.dateRepetition.rawValue)
+//                }
+//            }
+//            .onDelete(perform: { indexSet in
+//                viewModel.deleteDeltas(atOffsets: indexSet, deleteFrom: .earnings)
+//            })
+//        }
+//    }
     
-    @ViewBuilder var feesSection: some View {
-        List {
-            ForEach(viewModel.fees) { fee in
-                NavigationLink(destination: DeltaView(viewModel: DeltaViewModel(fee), toolbarType: .navigation)) {
-                    DeltaRowView(delta: fee)
-                }
-            }
-            .onDelete(perform: { indexSet in
-                viewModel.deleteDeltas(atOffsets: indexSet, deleteFrom: .fees)
-            })
-        }
-    }
+//    @ViewBuilder var feesSection: some View {
+//        List {
+//            ForEach(viewModel.fees) { fee in
+//                NavigationLink(destination: DeltaView(viewModel: $viewModel.deltaVMs[viewModel.getIndexOfDeltaViewModel(withId: fee.id)], toolbarType: .navigation)) {
+//                    DeltaRowView(name: fee.name, value: fee.value, dates: fee.dates, dateRepetitionName: fee.dateRepetition.rawValue)
+//                }
+//            }
+//            .onDelete(perform: { indexSet in
+//                viewModel.deleteDeltas(atOffsets: indexSet, deleteFrom: .fees)
+//            })
+//        }
+//    }
     
     @ViewBuilder var allDeltasSection: some View {
         List {
-            ForEach(viewModel.prediction.deltas) { delta in
-                NavigationLink(destination: DeltaView(viewModel: DeltaViewModel(delta), toolbarType: .navigation)) {
-                    DeltaRowView(delta: delta)
+            ForEach(viewModel.deltas) { delta in
+                NavigationLink(destination: DeltaView(delta: $viewModel.deltas[viewModel.getIndexOfDelta(withId: delta.id)], toolbarType: .navigation)) {
+                    DeltaRowView(name: delta.name, value: delta.value, dates: delta.dates, dateRepetitionName: delta.dateRepetition.rawValue)
                 }
             }
             .onDelete(perform: { indexSet in
@@ -154,16 +153,22 @@ extension PredictionView {
     }
 }
 
+// MARK: - Logger
+extension PredictionView {
+    static let logger = Logger(subsystem: "com.rcrisanti.Personal-Finance-Predictor", category: "PredictionView")
+}
+
 
 // MARK: - Preview
 struct PredictionView_Previews: PreviewProvider {
+    static let predID = UUID()
     static let prediction = Prediction(
-        id: UUID(),
-        name: "",
+        id: predID,
+        name: "Test",
         startBalance: -999_999.99,
         startDate: Date(),
-        deltas: [Delta()],
-        details: ""
+        deltas: [Delta(id: UUID(), name: "Test", value: 1232.1, details: "Some more info", dates: [Date(), Date(timeInterval: 12321, since: Date())], positiveUncertainty: 21.1, negativeUncertainty: 123.1, dateRepetition: .custom, predictionId: predID)],
+        details: "Here's a description"
     )
     
     static var previews: some View {
