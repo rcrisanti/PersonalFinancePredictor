@@ -10,7 +10,7 @@ import SwiftUI
 struct AddDeltaView: View {
     @State private var delta: Delta
     
-    init(predictionId: UUID = UUID()) {
+    init(predictionId: UUID) {
         _delta = State(wrappedValue: Delta(forPredictionWithId: predictionId))
     }
     
@@ -23,6 +23,6 @@ struct AddDeltaView: View {
 
 struct AddDeltaView_Previews: PreviewProvider {
     static var previews: some View {
-        AddDeltaView()
+        AddDeltaView(predictionId: UUID())
     }
 }

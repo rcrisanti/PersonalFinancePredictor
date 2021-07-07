@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 import os.log
+import SwiftUICharts
 
 enum DeltaFilter {
     case earnings, fees, all
@@ -115,6 +116,47 @@ class PredictionViewModel: ObservableObject {
             }
         }
     }
+    
+    // MARK: - Get data in format for plotting
+    var chartData: RangedLineChartData {
+        let pointStyle = PointStyle()
+        let style = RangedLineStyle(lineColour: ColourStyle(colour: .red), fillColour: ColourStyle(colour: .green), lineType: .curvedLine, strokeStyle: Stroke(), ignoreZero: true)
+        
+        let dataSets = RangedLineDataSet(
+            dataPoints: [
+                RangedLineChartDataPoint(value: 1234, upperValue: 1230, lowerValue: 1240, xAxisLabel: "xAxisLabel", description: "Description", date: Date()),
+                RangedLineChartDataPoint(value: 1237, upperValue: 1224, lowerValue: 1238, xAxisLabel: "xAxisLabel", description: "Description", date: Date(timeInterval: 12312, since: Date())),
+                RangedLineChartDataPoint(value: 1240, upperValue: 1222, lowerValue: 1245, xAxisLabel: "xAxisLabel", description: "Description", date: Date(timeInterval: 1234212, since: Date()))
+            ],
+            legendTitle: "Prediction",
+            legendFillTitle: "Uncertainty",
+            pointStyle: pointStyle,
+            style: style
+        )
+        
+        let metaData = ChartMetadata(
+            title: "Chart title",
+            subtitle: "Subtitle"//,
+//            titleFont: .headline,
+//            titleColour: .green,
+//            subtitleFont: .caption,
+//            subtitleColour: .red
+        )
+        
+//        let chartStyle = LineChartStyle(
+//            infoBoxPlacement: .floating, infoBoxContentAlignment: .horizontal, infoBoxValueFont: .body, infoBoxValueColour: .red, infoBoxDescriptionFont: .headline, infoBoxDescriptionColour: .green, infoBoxBackgroundColour: .gray, infoBoxBorderColour: .yellow)
+        
+        
+        let data = RangedLineChartData(
+            dataSets: dataSets,
+            metadata: metaData,
+//            chartStyle: chartStyle,
+            noDataText: Text("No Data")
+        )
+        
+        return data
+    }
+    
     
     // MARK: - Logger
     static let logger = Logger(subsystem: "com.rcisanti.Personal-Finance-Predictor", category: "PredictionViewModel")
