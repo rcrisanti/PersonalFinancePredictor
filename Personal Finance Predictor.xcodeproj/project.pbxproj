@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -34,10 +34,18 @@
 		ED4CF50C267E4ED700BA0100 /* PredictionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CF50B267E4ED700BA0100 /* PredictionsViewModel.swift */; };
 		ED53AE66267D2CFB00517245 /* Delta.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53AE65267D2CFB00517245 /* Delta.swift */; };
 		ED53AE68267D2F6F00517245 /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED53AE67267D2F6F00517245 /* Prediction.swift */; };
+		ED58AB762693F37800912173 /* NormalizedDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED58AB752693F37800912173 /* NormalizedDataSet.swift */; };
+		ED58AB782693F52200912173 /* StepLineChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED58AB772693F52200912173 /* StepLineChartViewModel.swift */; };
 		ED90DB31267FA2950044317D /* PredictionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED90DB30267FA2950044317D /* PredictionView.swift */; };
 		ED90DB33267FA6120044317D /* DeltaRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED90DB32267FA6120044317D /* DeltaRowView.swift */; };
 		EDACE33826826CD500234076 /* DateRepetition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDACE33726826CD500234076 /* DateRepetition.swift */; };
-		EDACE33A268284DA00234076 /* YearAgnosticDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDACE339268284DA00234076 /* YearAgnosticDatePickerView.swift */; };
+		EDAD0606268975B800082CBD /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = EDAD0605268975B800082CBD /* SwiftUICharts */; };
+		EDAD06082689766100082CBD /* TestSwiftUICharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAD06072689766100082CBD /* TestSwiftUICharts.swift */; };
+		EDAD060A26897A0900082CBD /* PredictionResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAD060926897A0900082CBD /* PredictionResultView.swift */; };
+		EDAD060D2689800200082CBD /* DataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAD060C2689800200082CBD /* DataPoint.swift */; };
+		EDAD060F2689804400082CBD /* DataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAD060E2689804400082CBD /* DataSet.swift */; };
+		EDAD0611268980BD00082CBD /* StepLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAD0610268980BD00082CBD /* StepLineChartView.swift */; };
+		EDAD06132689837600082CBD /* NormalizedDataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAD06122689837600082CBD /* NormalizedDataPoint.swift */; };
 		EDB0A1C7267EE39C00B45320 /* PredictionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB0A1C6267EE39C00B45320 /* PredictionStorage.swift */; };
 		EDF74DC32681949A0070AE75 /* CurrencyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF74DC22681949A0070AE75 /* CurrencyField.swift */; };
 /* End PBXBuildFile section */
@@ -93,10 +101,17 @@
 		ED4CF50B267E4ED700BA0100 /* PredictionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsViewModel.swift; sourceTree = "<group>"; };
 		ED53AE65267D2CFB00517245 /* Delta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delta.swift; sourceTree = "<group>"; };
 		ED53AE67267D2F6F00517245 /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
+		ED58AB752693F37800912173 /* NormalizedDataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalizedDataSet.swift; sourceTree = "<group>"; };
+		ED58AB772693F52200912173 /* StepLineChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepLineChartViewModel.swift; sourceTree = "<group>"; };
 		ED90DB30267FA2950044317D /* PredictionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionView.swift; sourceTree = "<group>"; };
 		ED90DB32267FA6120044317D /* DeltaRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeltaRowView.swift; sourceTree = "<group>"; };
 		EDACE33726826CD500234076 /* DateRepetition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRepetition.swift; sourceTree = "<group>"; };
-		EDACE339268284DA00234076 /* YearAgnosticDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearAgnosticDatePickerView.swift; sourceTree = "<group>"; };
+		EDAD06072689766100082CBD /* TestSwiftUICharts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSwiftUICharts.swift; sourceTree = "<group>"; };
+		EDAD060926897A0900082CBD /* PredictionResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionResultView.swift; sourceTree = "<group>"; };
+		EDAD060C2689800200082CBD /* DataPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPoint.swift; sourceTree = "<group>"; };
+		EDAD060E2689804400082CBD /* DataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSet.swift; sourceTree = "<group>"; };
+		EDAD0610268980BD00082CBD /* StepLineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepLineChartView.swift; sourceTree = "<group>"; };
+		EDAD06122689837600082CBD /* NormalizedDataPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalizedDataPoint.swift; sourceTree = "<group>"; };
 		EDB0A1C6267EE39C00B45320 /* PredictionStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionStorage.swift; sourceTree = "<group>"; };
 		EDF74DC22681949A0070AE75 /* CurrencyField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDAD0606268975B800082CBD /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +213,7 @@
 				ED4CF50B267E4ED700BA0100 /* PredictionsViewModel.swift */,
 				ED0815CD267C40780074CFDF /* PredictionViewModel.swift */,
 				ED400FEA2685196500E40F74 /* DeltaViewModel.swift */,
+				ED58AB772693F52200912173 /* StepLineChartViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -220,7 +237,6 @@
 				ED2994F02680442A0030377A /* BottomSheetView.swift */,
 				ED2994F32680463D0030377A /* BottomSheet.swift */,
 				EDF74DC22681949A0070AE75 /* CurrencyField.swift */,
-				EDACE339268284DA00234076 /* YearAgnosticDatePickerView.swift */,
 				ED408AB72683932D0064091D /* BackButton.swift */,
 			);
 			path = Utility;
@@ -241,9 +257,11 @@
 				ED408AB1268374EB0064091D /* PredictionRowView.swift */,
 				ED408AB526837AE60064091D /* NumDeltasIndicatorView.swift */,
 				ED90DB30267FA2950044317D /* PredictionView.swift */,
+				EDAD060926897A0900082CBD /* PredictionResultView.swift */,
 				ED2994F526804B120030377A /* DeltaView.swift */,
 				ED400FE62684E82100E40F74 /* AddDeltaView.swift */,
 				ED90DB32267FA6120044317D /* DeltaRowView.swift */,
+				EDAD05FD268970AD00082CBD /* Charts */,
 				ED2994F22680453B0030377A /* Utility */,
 			);
 			path = Views;
@@ -255,8 +273,29 @@
 				ED53AE67267D2F6F00517245 /* Prediction.swift */,
 				ED53AE65267D2CFB00517245 /* Delta.swift */,
 				EDACE33726826CD500234076 /* DateRepetition.swift */,
+				EDAD060B26897FF900082CBD /* Chart */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		EDAD05FD268970AD00082CBD /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				EDAD06072689766100082CBD /* TestSwiftUICharts.swift */,
+				EDAD0610268980BD00082CBD /* StepLineChartView.swift */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
+		EDAD060B26897FF900082CBD /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				ED58AB752693F37800912173 /* NormalizedDataSet.swift */,
+				EDAD06122689837600082CBD /* NormalizedDataPoint.swift */,
+				EDAD060E2689804400082CBD /* DataSet.swift */,
+				EDAD060C2689800200082CBD /* DataPoint.swift */,
+			);
+			path = Chart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +315,7 @@
 			);
 			name = "Personal Finance Predictor";
 			packageProductDependencies = (
+				EDAD0605268975B800082CBD /* SwiftUICharts */,
 			);
 			productName = "Personal Finance Predictor";
 			productReference = ED081592267C3BE90074CFDF /* Personal Finance Predictor.app */;
@@ -349,6 +389,7 @@
 			);
 			mainGroup = ED081589267C3BE90074CFDF;
 			packageReferences = (
+				EDAD0604268975B800082CBD /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
 			);
 			productRefGroup = ED081593267C3BE90074CFDF /* Products */;
 			projectDirPath = "";
@@ -395,17 +436,23 @@
 				ED53AE66267D2CFB00517245 /* Delta.swift in Sources */,
 				ED408ABB26839F9A0064091D /* ToolbarType.swift in Sources */,
 				ED2994F626804B120030377A /* DeltaView.swift in Sources */,
+				EDAD060D2689800200082CBD /* DataPoint.swift in Sources */,
 				ED90DB31267FA2950044317D /* PredictionView.swift in Sources */,
 				ED90DB33267FA6120044317D /* DeltaRowView.swift in Sources */,
+				EDAD060F2689804400082CBD /* DataSet.swift in Sources */,
 				ED408AB82683932D0064091D /* BackButton.swift in Sources */,
+				EDAD06082689766100082CBD /* TestSwiftUICharts.swift in Sources */,
 				ED4CF50A267E4EA100BA0100 /* PredictionsView.swift in Sources */,
 				ED2994ED268037B30030377A /* DeltaCD+fromDelta.swift in Sources */,
 				ED08159F267C3BEA0074CFDF /* Persistence.swift in Sources */,
+				ED58AB762693F37800912173 /* NormalizedDataSet.swift in Sources */,
 				ED2994EB2680370F0030377A /* DateCD+fromDate.swift in Sources */,
+				EDAD06132689837600082CBD /* NormalizedDataPoint.swift in Sources */,
+				EDAD0611268980BD00082CBD /* StepLineChartView.swift in Sources */,
 				EDB0A1C7267EE39C00B45320 /* PredictionStorage.swift in Sources */,
+				EDAD060A26897A0900082CBD /* PredictionResultView.swift in Sources */,
 				ED400FEB2685196500E40F74 /* DeltaViewModel.swift in Sources */,
 				ED0815CE267C40780074CFDF /* PredictionViewModel.swift in Sources */,
-				EDACE33A268284DA00234076 /* YearAgnosticDatePickerView.swift in Sources */,
 				ED2994F42680463D0030377A /* BottomSheet.swift in Sources */,
 				ED0815A2267C3BEA0074CFDF /* Personal_Finance_Predictor.xcdatamodeld in Sources */,
 				EDF74DC32681949A0070AE75 /* CurrencyField.swift in Sources */,
@@ -415,6 +462,7 @@
 				ED408AB626837AE60064091D /* NumDeltasIndicatorView.swift in Sources */,
 				ED408AB2268374EB0064091D /* PredictionRowView.swift in Sources */,
 				ED53AE68267D2F6F00517245 /* Prediction.swift in Sources */,
+				ED58AB782693F52200912173 /* StepLineChartViewModel.swift in Sources */,
 				ED081598267C3BE90074CFDF /* ContentView.swift in Sources */,
 				ED081596267C3BE90074CFDF /* Personal_Finance_PredictorApp.swift in Sources */,
 				ED2994F12680442A0030377A /* BottomSheetView.swift in Sources */,
@@ -740,6 +788,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EDAD0604268975B800082CBD /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/willdale/SwiftUICharts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EDAD0605268975B800082CBD /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EDAD0604268975B800082CBD /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		ED0815A0267C3BEA0074CFDF /* Personal_Finance_Predictor.xcdatamodeld */ = {

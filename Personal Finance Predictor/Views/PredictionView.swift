@@ -109,18 +109,18 @@ extension PredictionView {
         }
     }
     
-    @ViewBuilder var allDeltasSection: some View {
-        List {
-            ForEach(viewModel.deltas) { delta in
-                NavigationLink(destination: DeltaView(delta: $viewModel.deltas[viewModel.getIndexOfDelta(withId: delta.id)], toolbarType: .navigation)) {
-                    DeltaRowView(name: delta.name, value: delta.value, dates: delta.dates, dateRepetitionName: delta.dateRepetition.rawValue)
-                }
-            }
-            .onDelete(perform: { indexSet in
-                viewModel.deleteDeltas(atOffsets: indexSet, deleteFrom: .all)
-            })
-        }
-    }
+//    @ViewBuilder var allDeltasSection: some View {
+//        List {
+//            ForEach(viewModel.deltas) { delta in
+//                NavigationLink(destination: DeltaView(delta: $viewModel.deltas[viewModel.getIndexOfDelta(withId: delta.id)], toolbarType: .navigation)) {
+//                    DeltaRowView(name: delta.name, value: delta.value, dates: delta.dates, dateRepetitionName: delta.dateRepetition.rawValue)
+//                }
+//            }
+//            .onDelete(perform: { indexSet in
+//                viewModel.deleteDeltas(atOffsets: indexSet, deleteFrom: .all)
+//            })
+//        }
+//    }
 }
 
 // MARK: - Toolbar
